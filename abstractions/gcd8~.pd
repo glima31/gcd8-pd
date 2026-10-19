@@ -30,8 +30,8 @@
 #X obj 25 148 knob 56 60 360 0 120 \$0-clock-rate \$0-clock-rate-set #191919 #696969 #eeeeee 0 0 301 1 0 270 0 0 60 empty empty 0 12 6 -15 0 1 0 0;
 #X obj 217 84 cnv 15 222 98 empty empty empty 20 12 0 14 #3ac668 #111111 0;
 #N canvas 0 0 450 250 (subpatch) 0;
-#X array \$0-track-1-waveform 1 float 2;
-#X coords 0 1 1 -1 223 98 1;
+#X array \$0-track-1-waveform 34231 float 2;
+#X coords 0 1 34231 -1 223 98 1;
 #X restore 217 84 graph;
 #X obj 220 201 hsl 217 22 0 1 0 0 \$0-start-offset \$0-start-offset-set Start\ Position -2 -8 0 10 #191919 #eeeeee #111111 0 1;
 #X obj 23 269 button 65 47 25 25 25 255 0 0 1;
@@ -103,8 +103,8 @@
 #X obj 91 26 cnv 15 34 15 empty empty v0.1.0 0 5 0 11 #191919 #eeeeee 0;
 #X obj 644 46 cnv 15 66 26 empty empty empty 20 12 0 14 #4a4a4a #111111 0;
 #X obj 649 51 cnv 15 56 26 empty empty empty 20 12 0 14 #d0d3cd #111111 0;
-#X obj 625 54 knob 38 0 20 0 0 \$0-vel-attack \$0-vel-attack-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
-#X obj 686 54 knob 38 0 0.7 0 0 \$0-vel-length \$0-vel-length-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
+#X obj 625 54 knob 38 0 150 2 0 \$0-vel-attack \$0-vel-attack-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 0 -15 0 1 0 0 0 0;
+#X obj 686 54 knob 38 0 0.85 0 0 \$0-vel-length \$0-vel-length-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
 #X obj 665 44 cnv 15 26 9 empty empty ENV. 0 5 0 12 #d0d3cd #111111 0;
 #X obj 574 97 cnv 15 32 8 empty empty START 0 6 0 11 #d0d3cd #111111 0;
 #X obj 622 97 cnv 15 32 8 empty empty ATTACK 0 6 0 11 #d0d3cd #111111 0;
@@ -224,8 +224,8 @@
 #X coords 0 1 1 -1 223 98 1;
 #X restore 217 84 graph;
 #X symbolatom 217 39 22 0 0 0 - \$0-filename-display-set - 16;
-#N canvas 0 50 450 300 track-editor 1;
-#N canvas 0 50 450 300 controls 1;
+#N canvas 0 50 450 300 track-editor 0;
+#N canvas 0 50 450 300 controls 0;
 #X obj 206 1007 r \$0-base-hits;
 #X obj 206 1062 list prepend hits;
 #X obj 648 1187 s \$0-track-params-update;
@@ -331,7 +331,7 @@
 #C store jitter_ceiling 1;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -821,7 +821,7 @@
 #X obj 388 282 button 54 32 25 25 25 123 123 123 2;
 #X obj 394 290 else/note 43 9 Menlo empty 0 238 238 238 0 255 255 255 0 1 CLEAR;
 #X obj 340 362 cnv 15 30 11 empty empty ENV.\ SHAPE 0 7 0 11 #e1e1e1 #111111 0;
-#X obj 351 319 knob 38 0 0.95 0 0.95 \$0-hold \$0-hold-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
+#X obj 351 319 knob 38 0 1 0 1 \$0-hold \$0-hold-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
 #X obj -156 506 s \$0-clear-file;
 #X obj 271 283 button 54 32 25 25 25 123 123 123 2;
 #X obj 277 291 else/note 43 9 Menlo empty 0 238 238 238 0 255 255 255 0 1 STOP;
@@ -1159,7 +1159,7 @@
 #X msg 1708 717 \$2 \$1 \$3;
 #X obj 1708 775 route level mute;
 #X msg 1016 1665 level \$1 \$2;
-#N canvas 0 50 450 300 track-params 0;
+#N canvas 0 50 450 300 track-params 1;
 #X obj 137 1102 coll \$0-track-1 1 @embed 1;
 #C flags 1 0;
 #C store level 1;
@@ -1180,7 +1180,7 @@
 #C store jitter_ceiling 1;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1208,7 +1208,7 @@
 #C store pan_side 0;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1236,7 +1236,7 @@
 #C store pan_side 0;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1265,7 +1265,7 @@
 #C store length 18;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1294,7 +1294,7 @@
 #C store length 21;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1323,7 +1323,7 @@
 #C store length 19;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1352,7 +1352,7 @@
 #C store length 22;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1380,7 +1380,7 @@
 #C store pan_side 0;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1444,7 +1444,7 @@
 #C store pan_side 0;
 #C store file none;
 #C store start 0;
-#C store hold 0.95;
+#C store hold 1;
 #C store vel_tone 0;
 #C store vel_start 0;
 #C store vel_attack 0;
@@ -1479,7 +1479,7 @@
 #X text 372 25 this is sent from [pd track-editor ] whenever a track parameter value changes via a GUI control. First \, we store it in the selected track's [coll ]. Then we send it to the parent patch to update the engine itself (via \$0-track-params-update), f 29;
 #X text 620 70 this is sent when a mute button is pressed. we store it in the track's [coll ] and send it to the parent patch to apply to track's mixer channel, f 30;
 #X text 1204 55 When CTRL+S is pressed \, [pd state-persistence ] requests each track's params data for state saving. we read each track's [coll ] objects and send the values back via \$0-state-save-line, f 32;
-#X msg 67 649 store level 1 \, store mute 0 \, store step_rate 2 \, store steps 1 \, store hits 0 \, store shift 0 \, store jitter_level 0 \, store jitter_ceil 1 \, store accent_hits 0 \, store accent_intensity 1 \, store accent_shift 0 \, store pan_hits 0 \, store pan_spread 0 \, store pan_side 0 \, store file none \, store start 0 \, store hold 0.95 \, store vel_tone 0 \, store vel_start 0 \, store vel_attack 0 \, store vel_length 0 \, store end 1 \, store vel_amp 1, f 52;
+#X msg 67 649 store level 1 \, store mute 0 \, store step_rate 2 \, store steps 1 \, store hits 0 \, store shift 0 \, store jitter_level 0 \, store jitter_ceil 1 \, store accent_hits 0 \, store accent_intensity 1 \, store accent_shift 0 \, store pan_hits 0 \, store pan_spread 0 \, store pan_side 0 \, store file none \, store start 0 \, store hold 1 \, store vel_tone 0 \, store vel_start 0 \, store vel_attack 0 \, store vel_length 0 \, store end 1 \, store vel_amp 1, f 52;
 #X connect 8 0 9 0 32.................SC...fn++++z....H5++++N....;
 #X connect 8 1 11 0 32.................+B...Dz++++u....A8++++N....;
 #X connect 8 2 13 0 32.................f..........H.........7N....;
@@ -1756,8 +1756,8 @@
 #X connect 43 3 124 0;
 #X connect 43 4 117 0 32.................VB...7B...fk....u....LK....;
 #X connect 43 4 125 0 48.................gA...LO...PX....yC...Dd...f.A...gG...HP...fQB...;
-#X connect 43 5 126 0 48.................c....Da...PG....wF...Lh...P7A...iH...De...fQB...;
 #X connect 43 5 120 0 32.................sA...7N...Pa....uC...LK....;
+#X connect 43 5 126 0 48.................c....Da...PG....wF...Lh...P7A...iH...De...fQB...;
 #X connect 43 6 119 0 32.................AB...Da...Pf....wF...LK....;
 #X connect 43 6 127 0 32.................pG....t...f5A...fK...Xj....;
 #X connect 43 7 118 0 32.................bA...Hm....W....xI...LK....;
@@ -1822,28 +1822,28 @@
 #X connect 110 0 105 0;
 #X connect 111 0 101 0;
 #X connect 113 0 44 0;
-#X connect 113 1 121 0 32.................QA...r9+++eT....q++++CX....;
 #X connect 113 1 63 0;
+#X connect 113 1 121 0 32.................QA...r9+++eT....q++++CX....;
 #X connect 113 2 53 0;
 #X connect 113 5 72 0 32.................LA...7A....S....e....bI....;
 #X connect 114 0 45 0;
-#X connect 114 1 122 0 32.................QA...fA...PT....X.....X....;
 #X connect 114 1 64 0;
+#X connect 114 1 122 0 32.................QA...fA...PT....X.....X....;
 #X connect 114 2 54 0;
 #X connect 114 5 73 0 32.................LA...7A....S....e....bI....;
 #X connect 115 0 46 0;
-#X connect 115 1 123 0 32.................VA...XD...fU....FA....X....;
 #X connect 115 1 65 0;
+#X connect 115 1 123 0 32.................VA...XD...fU....FA....X....;
 #X connect 115 2 55 0;
 #X connect 115 5 74 0 32.................LA...7A....S....e....bI....;
 #X connect 116 0 47 0;
-#X connect 116 1 124 0 48..................A...H++++OP....x+++++Q....d....eD...fG....fA...;
 #X connect 116 1 66 0;
+#X connect 116 1 124 0 48..................A...H++++OP....x+++++Q....d....eD...fG....fA...;
 #X connect 116 2 56 0;
 #X connect 116 5 75 0 32.................LA...7A....S....e....bI....;
 #X connect 117 0 48 0;
-#X connect 117 1 125 0 48.................XA...7E....V....eA...jE...Pu....YA...zK....fA...;
 #X connect 117 1 67 0;
+#X connect 117 1 125 0 48.................XA...7E....V....eA...jE...Pu....YA...zK....fA...;
 #X connect 117 2 57 0;
 #X connect 117 5 76 0 32.................LA...7A....S....e....bI....;
 #X connect 118 0 51 0;
@@ -1858,8 +1858,8 @@
 #X connect 119 0 50 0;
 #X connect 119 0 104 0 48.................AE...fQ...PPA...XD...rz...PzA...KM...Dc...PpC...;
 #X connect 119 1 110 0 32.................K....vf...vB....LH...z2....;
-#X connect 119 1 127 0 64.................CA...fG...vP....3A...PD...Px....DA...jL....VA...YD...fU...PFA....F....;
 #X connect 119 1 69 0;
+#X connect 119 1 127 0 64.................CA...fG...vP....3A...PD...Px....DA...jL....VA...YD...fU...PFA....F....;
 #X connect 119 2 106 0 32.................HI...Lg....RB...SH...j5....;
 #X connect 119 2 59 0;
 #X connect 119 3 107 0 32.................nA...fj....Z....HI...j5....;
@@ -1912,6 +1912,7 @@
 #X connect 135 2 113 0 32.................2B...v79+++s....Lu+++Sd....;
 #X connect 135 2 117 0 32.................2B...Lw++++s....S7+++Sd....;
 #X connect 135 2 120 0 32.................RG...P9+++uzA...j++++Sd....;
+#X connect 136 0 121 0 32.................d....b2+++uG....28+++am....;
 #X connect 136 0 128 0 48.................XB...LZA...l....iV...fO....kF...3C...PoA..fcB...;
 #X connect 136 0 127 0 32.................3B....YA...t....PV...Xm....;
 #X connect 136 0 126 0 32.................XB....IA...l....PR...Xm....;
@@ -1919,5 +1920,4 @@
 #X connect 136 0 122 0 32.................qH...TG...vJB...0A...Xm....;
 #X connect 136 0 124 0 32.................tI...jm...faB...4I...Xm....;
 #X connect 136 0 123 0 48.................pB...TM...fp....UC...rJ...PcA...qB...TW...fcB...;
-#X connect 136 0 121 0 32.................d....b2+++uG....28+++am....;
 #X coords 0 0 1 1 828 516 1 0 -1;

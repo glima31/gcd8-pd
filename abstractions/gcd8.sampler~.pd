@@ -137,7 +137,7 @@
 #X obj 615 1095 outlet;
 #X obj 785 1095 outlet;
 #X text 719 1115 bang: when the file is loaded;
-#N canvas 0 50 450 300 input 0;
+#N canvas 0 50 450 300 input 1;
 #X obj 33 29 inlet;
 #X obj 399 515 symbol;
 #X obj 183 580 s \$0-start-offset;
@@ -218,7 +218,7 @@
 #X text 54 163 when the sampler is triggered by a bang: play at velocity=1.0 \, centered., f 26;
 #X text 277 163 when the sampler is triggered by a single float: play velocity = float value \, centered., f 28;
 #X text 606 161 when the sampler is triggered by a list<f \, f>: play at velocity = first float and panning = second float, f 29;
-#N canvas 0 50 450 300 velocity-response 1;
+#N canvas 0 50 450 300 velocity-response 0;
 #X obj 87 422 outlet~;
 #X obj 263 422 outlet~;
 #X obj 454 422 outlet;
@@ -263,13 +263,13 @@
 #X obj 218 191 t f f;
 #X obj 218 273 expr min($f2 * pow(1 - $f1 \, 2) \, $f3 * 0.5);
 #X text 244 307 ^^^ attack_len = min(\$0-attack-depth x (1 - velocity)^2 \, envelope_len * 0.5). if the attack exceed half the envelope length \, we cap it at 50% to guarantee hold and decay never go negative., f 38;
+#X obj 858 273 expr 1 - 0.05 * pow(1 / 0.05\\\, 1 - $f1);
 #X connect 1 0 2 0 32.................n++++C.....5++++.....DD....;
 #X connect 1 0 2 1 32.................W....r....vE....K....DD....;
 #X connect 2 0 0 0;
 #X connect 3 0 4 0 32.................R.........fD.........jA....;
 #X connect 4 0 1 0 32.................f..........H.........PE....;
-#X connect 5 0 7 2 32.................nD.........JA........vS....;
-#X connect 5 0 9 2 32.................GD...Df++++AA...A3+++WT....;
+#X connect 5 0 34 0;
 #X connect 7 0 3 1 32.................mA...nh++++Y....p3+++OH....;
 #X connect 7 0 21 0;
 #X connect 8 0 3 2 32.................T....X2+++OE....18+++6D....;
@@ -293,6 +293,8 @@
 #X connect 31 1 16 0 32.................U....rR...PE....qD...7C....;
 #X connect 32 0 10 0 32.................JA........fR.........jF....;
 #X connect 32 0 19 0 32.................L....X0+++OC....V8+++qB....;
+#X connect 34 0 7 2 32.................aA........vV.........XK....;
+#X connect 34 0 9 2 32.................FB...Df+++ug....A3++++K....;
 #X restore 263 327 pd envelope;
 #N canvas 0 50 450 300 tone 0;
 #X obj 73 21 inlet;
