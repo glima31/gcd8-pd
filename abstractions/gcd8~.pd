@@ -294,7 +294,7 @@
 #C store sequencer 0 32 0.312 0 0 1 0 1 0 0 0;
 #C store sampler D:/Audio\ Samples/Drum\ Machines/808/05\ Kick\ 1.wav 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -790,8 +790,8 @@
 #X obj -156 338 v \$0-selected-track;
 #X msg -156 368 \$1 stop;
 #X obj 203 156 hsl 166 14 0 1 0 0 empty \$0-playhead empty -2 -8 0 10 #3ac668 #eeeeee #111111 0 1;
-#X obj 203 218 hsl 166 17 0 1 0 0 \$0-end-offset \$0-end-offset-set End\ Position 54 25 0 10 #191919 #eeeeee #111111 0 1;
-#X obj 222 287 knob 38 0 1 0 1 \$0-vel-amp \$0-vel-amp-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
+#X obj 203 224 hsl 166 17 0 1 0 0 \$0-end-offset \$0-end-offset-set End\ Position 54 25 0 10 #191919 #eeeeee #111111 0 1;
+#X obj 222 287 knob 38 0 1 0 0 \$0-vel-amp \$0-vel-amp-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
 #X obj 225 326 cnv 15 32 8 empty empty AMP. 0 6 0 11 #d0d3cd #111111 0;
 #X obj 476 252 cnv 15 153 32 empty empty empty 6 11 0 13 #4a4a4a #eeeeee 0;
 #X obj 480 256 cnv 15 71 24 empty empty empty 20 12 0 14 #d0d3cd #e1e1e1 0;
@@ -814,7 +814,6 @@
 #X obj 605 229 cnv 15 32 8 empty empty CEILING 0 6 0 11 #d0d3cd #111111 0;
 #X obj 607 190 knob 38 0.1 1 0 1 \$0-jitter-ceiling \$0-jitter-ceiling-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0.1 empty 0 6 -15 0 1 0 0 0 0;
 #X obj 379 190 knob 38 0 1 0 1 \$0-track-level \$0-track-level-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
-#X obj 383 229 cnv 15 30 11 empty empty LEVEL 0 7 0 11 #e1e1e1 #111111 0;
 #X obj 528 80 cnv 15 36 9 empty empty STEP\ RATE 0 7 0 11 #e1e1e1 #111111 0;
 #X obj 507 57 hradio 24 1 1 4 \$0-step-rate \$0-step-rate-set 1/16\ \ \ \ 1/8\ \ \ \ 1/4\ \ \ \ 1/2 10 -6 0 8 #191919 #eeeeee #111111 2;
 #X obj 240 348 cnv 15 158 32 empty empty empty 6 11 0 13 #4a4a4a #eeeeee 0;
@@ -825,15 +824,16 @@
 #X obj 379 357 knob 38 0 0.85 0 0 \$0-vel-decay \$0-vel-decay-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
 #X obj 222 396 cnv 15 32 8 empty empty ATTACK 0 6 0 11 #d0d3cd #111111 0;
 #X obj 380 396 cnv 15 36 9 empty empty DECAY 0 6 0 11 #d0d3cd #111111 0;
-#X obj 299 359 knob 38 0 1 0 1 \$0-env-shape \$0-env-shape-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
+#X obj 299 359 knob 38 0 1 0 1 \$0-env-shape \$0-env-shape-set #191919 #696969 #eeeeee 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
 #X obj 302 326 cnv 15 32 8 empty empty TONE 0 6 0 11 #d0d3cd #111111 0;
 #X obj 21 377 button 65 47 25 25 25 255 0 0 1;
 #X obj 27 391 else/note 54 11 Menlo \$0-run-btn-text 0 238 238 238 0 255 255 255 0 1 RUN;
 #X obj 100 377 button 65 47 25 25 25 123 123 123 2;
 #X obj 106 391 else/note 54 11 Menlo empty 0 238 238 238 0 255 255 255 0 1 RESET;
 #X obj 9 95 cnv 15 154 16 empty empty github.com/glima31/gcd8-pd 20 7 0 9 #d0d3cd #191919 0;
-#X obj 304 396 cnv 15 36 9 empty empty HOLD 0 6 0 11 #d0d3cd #111111 0;
-#X connect 26 0 215 0 32.................O....rK...vC....6B...PE....;
+#X obj 299 396 cnv 15 35 12 empty empty HOLD 3 6 0 11 #4a4a4a #eeeeee 0;
+#X obj 381 229 cnv 15 35 12 empty empty LEVEL 3 6 0 11 #4a4a4a #eeeeee 0;
+#X connect 26 0 214 0 32.................O....rK...vC....6B...PE....;
 #X connect 28 0 150 0 32.................8++++uo+++e+++++a5+++CI....;
 #X connect 30 0 32 0 48.................W7+++OQ...vE++++SD...bw+++u58+++W7+++qd+++OnA...;
 #X connect 34 0 94 0 32.................O.........vC.........3B....;
@@ -942,8 +942,8 @@
 #X connect 172 0 175 0 48.................s8+++W2+++ea++++08+++21++++l9+++s8+++uo++++u....;
 #X connect 175 0 176 0;
 #X connect 176 0 174 0;
-#X connect 215 0 112 0 32.................1B........fs.........3R....;
-#X connect 217 0 27 0 32.................eA........vW.........zK....;
+#X connect 214 0 112 0 32.................1B........fs.........3R....;
+#X connect 216 0 27 0 32.................eA........vW.........zK....;
 #X coords 0 0 1 1 698 543 2 -2 -2;
 #X restore 1 0 pd gui;
 #N canvas 0 50 450 300 clock 0;
@@ -1149,7 +1149,7 @@
 #X msg 1708 717 \$2 \$1 \$3;
 #X obj 1708 775 route level mute;
 #X msg 1016 1665 level \$1 \$2;
-#N canvas 0 50 450 300 track-params 0;
+#N canvas 0 50 450 300 track-params 1;
 #X obj 137 1156 coll \$0-track-1 1 @embed 1;
 #C flags 1 0;
 #C store level 1;
@@ -1178,7 +1178,7 @@
 #C store sequencer 0 32 0.312 0 0 1 0 1 0 0 0;
 #C store sampler D:/Audio\ Samples/Drum\ Machines/808/05\ Kick\ 1.wav 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1208,7 +1208,7 @@
 #C store sequencer 1 32 0.264 0 0 1 0 1 0 0 0;
 #C store sampler D:/Audio\ Samples/Drum\ Machines/808/11\ Snare\ 1.wav 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1238,7 +1238,7 @@
 #C store sequencer 0 32 0.924 0 0.104 0.7012 0.472 1 0.288 0.372 0;
 #C store sampler D:/Audio\ Samples/Drum\ Machines/808/32\ HH\ Closed.wav 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1269,7 +1269,7 @@
 #C store sequencer 1 22 0.7 0 0 1 0 1 0 0 1;
 #C store sampler D:/Audio\ Samples/Drum\ Machines/808/33\ HH\ Combo.wav 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1300,7 +1300,7 @@
 #C store sequencer 0 32 0.604 0 0 1 0 1 0 0 0;
 #C store sampler D:/Audio\ Samples/Drum\ Machines/Kawai\ R50e/11\ R-50E\ #013.wav 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1331,7 +1331,7 @@
 #C store sequencer 2 1 0 0 0 1 0 1 0 0 0;
 #C store sampler none 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1362,7 +1362,7 @@
 #C store sequencer 0 32 0.808 0 0 1 0 1 0 0 0;
 #C store sampler none 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1392,7 +1392,7 @@
 #C store sequencer 0 32 0.276 0 0 1 0 1 0 0 0;
 #C store sampler none 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1458,7 +1458,7 @@
 #C store sequencer 0 32 0.276 0 0 1 0 1 0 0 0;
 #C store sampler none 0.95 0 0 0 0 0;
 #C store end 1;
-#C store vel_amp 1;
+#C store vel_amp 0;
 #C store env_shape 1;
 #C store vel_decay 0;
 #C restore;
@@ -1487,7 +1487,7 @@
 #X text 372 25 this is sent from [pd track-editor ] whenever a track parameter value changes via a GUI control. First \, we store it in the selected track's [coll ]. Then we send it to the parent patch to update the engine itself (via \$0-track-params-update), f 29;
 #X text 620 70 this is sent when a mute button is pressed. we store it in the track's [coll ] and send it to the parent patch to apply to track's mixer channel, f 30;
 #X text 1204 55 When CTRL+S is pressed \, [pd state-persistence ] requests each track's params data for state saving. we read each track's [coll ] objects and send the values back via \$0-state-save-line, f 32;
-#X msg 67 649 store level 1 \, store mute 0 \, store step_rate 2 \, store steps 1 \, store hits 0 \, store shift 0 \, store jitter_level 0 \, store jitter_ceil 1 \, store accent_hits 0 \, store accent_intensity 1 \, store accent_shift 0 \, store pan_hits 0 \, store pan_spread 0 \, store pan_side 0 \, store file none \, store start 0 \, store env_shape 1 \, store vel_tone 0 \, store vel_start 0 \, store vel_attack 0 \, store vel_decay 0 \, store end 1 \, store vel_amp 1, f 52;
+#X msg 67 649 store level 1 \, store mute 0 \, store step_rate 2 \, store steps 1 \, store hits 0 \, store shift 0 \, store jitter_level 0 \, store jitter_ceil 1 \, store accent_hits 0 \, store accent_intensity 1 \, store accent_shift 0 \, store pan_hits 0 \, store pan_spread 0 \, store pan_side 0 \, store file none \, store start 0 \, store env_shape 1 \, store vel_tone 0 \, store vel_start 0 \, store vel_attack 0 \, store vel_decay 0 \, store end 1 \, store vel_amp 0, f 52;
 #X connect 8 0 9 0 32.................SC...fn++++z....H5++++N....;
 #X connect 8 1 11 0 32.................+B...Dz++++u....A8++++N....;
 #X connect 8 2 13 0 32.................f..........H.........7N....;
