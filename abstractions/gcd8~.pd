@@ -825,7 +825,6 @@
 #X obj 379 357 knob 38 0 0.85 0 0 \$0-vel-decay \$0-vel-decay-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
 #X obj 222 396 cnv 15 32 8 empty empty ATTACK 0 6 0 11 #d0d3cd #111111 0;
 #X obj 380 396 cnv 15 36 9 empty empty DECAY 0 6 0 11 #d0d3cd #111111 0;
-#X obj 294 396 cnv 15 38 9 empty empty HOLD 9 7 0 11 #d0d3cd #111111 0;
 #X obj 299 359 knob 38 0 1 0 1 \$0-env-shape \$0-env-shape-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
 #X obj 302 326 cnv 15 32 8 empty empty TONE 0 6 0 11 #d0d3cd #111111 0;
 #X obj 21 377 button 65 47 25 25 25 255 0 0 1;
@@ -833,7 +832,8 @@
 #X obj 100 377 button 65 47 25 25 25 123 123 123 2;
 #X obj 106 391 else/note 54 11 Menlo empty 0 238 238 238 0 255 255 255 0 1 RESET;
 #X obj 9 95 cnv 15 154 16 empty empty github.com/glima31/gcd8-pd 20 7 0 9 #d0d3cd #191919 0;
-#X connect 26 0 216 0 32.................O....rK...vC....6B...PE....;
+#X obj 304 396 cnv 15 36 9 empty empty HOLD 0 6 0 11 #d0d3cd #111111 0;
+#X connect 26 0 215 0 32.................O....rK...vC....6B...PE....;
 #X connect 28 0 150 0 32.................8++++uo+++e+++++a5+++CI....;
 #X connect 30 0 32 0 48.................W7+++OQ...vE++++SD...bw+++u58+++W7+++qd+++OnA...;
 #X connect 34 0 94 0 32.................O.........vC.........3B....;
@@ -942,8 +942,8 @@
 #X connect 172 0 175 0 48.................s8+++W2+++ea++++08+++21++++l9+++s8+++uo++++u....;
 #X connect 175 0 176 0;
 #X connect 176 0 174 0;
-#X connect 216 0 112 0 32.................1B........fs.........3R....;
-#X connect 218 0 27 0 32.................eA........vW.........zK....;
+#X connect 215 0 112 0 32.................1B........fs.........3R....;
+#X connect 217 0 27 0 32.................eA........vW.........zK....;
 #X coords 0 0 1 1 698 543 2 -2 -2;
 #X restore 1 0 pd gui;
 #N canvas 0 50 450 300 clock 0;
