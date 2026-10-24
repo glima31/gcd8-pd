@@ -1,6 +1,6 @@
 #N canvas 827 239 695 543 12;
 #X declare -path ../abstractions;
-#N canvas 0 50 450 300 daw 1;
+#N canvas 0 50 450 300 daw 0;
 #X obj 281 21 playhead;
 #X obj 418 231 unpack f f f;
 #X obj 202 67 change;
@@ -74,7 +74,7 @@
 #X obj 630 600 dac~ 17 18;
 #X obj 724 24 declare -path ../abstractions;
 #X obj -1 -1 gcd8~;
-#A saved 1 level 0.5;
+#A saved 1 level 1;
 #A saved 1 mute 0;
 #A saved 1 step_rate 2;
 #A saved 1 steps 1;
@@ -103,7 +103,7 @@
 #A saved 1 vel_amp 0;
 #A saved 1 env_shape 1;
 #A saved 1 vel_decay 0;
-#A saved 2 level 0.5;
+#A saved 2 level 1;
 #A saved 2 mute 0;
 #A saved 2 step_rate 2;
 #A saved 2 steps 1;
@@ -130,7 +130,7 @@
 #A saved 2 vel_amp 0;
 #A saved 2 env_shape 1;
 #A saved 2 vel_decay 0;
-#A saved 3 level 0.5;
+#A saved 3 level 1;
 #A saved 3 mute 0;
 #A saved 3 step_rate 2;
 #A saved 3 steps 1;
@@ -157,7 +157,7 @@
 #A saved 3 vel_amp 0;
 #A saved 3 env_shape 1;
 #A saved 3 vel_decay 0;
-#A saved 4 level 0.5;
+#A saved 4 level 1;
 #A saved 4 mute 0;
 #A saved 4 step_rate 2;
 #A saved 4 steps 1;
@@ -185,7 +185,7 @@
 #A saved 4 vel_amp 0;
 #A saved 4 env_shape 1;
 #A saved 4 vel_decay 0;
-#A saved 5 level 0.5;
+#A saved 5 level 1;
 #A saved 5 mute 0;
 #A saved 5 step_rate 2;
 #A saved 5 steps 1;
@@ -213,7 +213,7 @@
 #A saved 5 vel_amp 0;
 #A saved 5 env_shape 1;
 #A saved 5 vel_decay 0;
-#A saved 6 level 0.5;
+#A saved 6 level 1;
 #A saved 6 mute 0;
 #A saved 6 step_rate 2;
 #A saved 6 steps 1;
@@ -241,7 +241,7 @@
 #A saved 6 vel_amp 0;
 #A saved 6 env_shape 1;
 #A saved 6 vel_decay 0;
-#A saved 7 level 0.5;
+#A saved 7 level 1;
 #A saved 7 mute 0;
 #A saved 7 step_rate 2;
 #A saved 7 steps 1;
@@ -269,7 +269,7 @@
 #A saved 7 vel_amp 0;
 #A saved 7 env_shape 1;
 #A saved 7 vel_decay 0;
-#A saved 8 level 0.5;
+#A saved 8 level 1;
 #A saved 8 mute 0;
 #A saved 8 step_rate 2;
 #A saved 8 steps 1;
