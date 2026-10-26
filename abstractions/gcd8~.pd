@@ -844,7 +844,7 @@
 #X obj 27 93 cnv 15 128 19 empty empty github.com/glima31/gcd8-pd 3 7 0 9 #4a4a4a #eeeeee 0;
 #X obj 200 24 cnv 15 171 20 empty \$0-filename-display-set empty 10 12 0 11 #191919 #e1e1e1 0;
 #X obj 18 187 cnv 15 73 23 empty \$0-bpm-display 120\ BPM 10 12 0 11 #191919 #e1e1e1 0;
-#X obj 96 187 cnv 15 73 23 empty \$0-clock-id 1003-clk 10 12 0 11 #191919 #e1e1e1 0;
+#X obj 96 187 cnv 15 73 23 empty \$0-clock-id 1004-clk 10 12 0 11 #191919 #e1e1e1 0;
 #X connect 23 0 208 0;
 #X connect 25 0 145 0;
 #X connect 27 0 29 0;
@@ -958,7 +958,7 @@
 #X connect 210 0 24 0;
 #X coords 0 0 1 1 695 543 2 -2 -2;
 #X restore 1 0 pd gui;
-#N canvas 0 50 450 300 clock 1;
+#N canvas 0 50 450 300 clock 0;
 #X obj 370 116 inlet;
 #X obj 406 397 s \$0-bpm-display;
 #X obj 353 290 selector;
