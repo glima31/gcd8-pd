@@ -1,6 +1,6 @@
 #N canvas 0 140 695 543 12;
 #X declare -path ../utils;
-#N canvas 0 56 380 192 gui 0;
+#N canvas 0 56 380 192 gui 1;
 #X obj -1 -1 cnv 15 693 541 empty empty empty 20 12 0 14 #d0d3cd #ffffff 0;
 #X obj 9 156 cnv 15 169 169 empty empty MASTER\ CLOCK 6 11 0 13 #191919 #eeeeee 0;
 #X obj 12 177 cnv 15 163 145 empty empty empty 20 12 0 14 #d0d3cd #e1e1e1 0;
@@ -26,7 +26,7 @@
 #X array \$0-track-1-waveform 1 float 2;
 #X coords 0 1 1 -1 172 85 2 0 0;
 #X restore 200 45 graph;
-#X obj 203 156 hsl 166 17 0 1 0 0 \$0-start-offset \$0-start-offset-set Start\ Position 0 25 0 10 #191919 #eeeeee #111111 0 1;
+#X obj 203 156 hsl 166 17 0 1 0 0 \$0-start-offset \$0-start-offset-set START\ POSITION 0 25 0 10 #191919 #eeeeee #111111 0 1;
 #X obj -156 169 r \$0-run-btn-set;
 #X obj 107 621 s \$0-reset;
 #X obj 379 56 button 54 23 25 25 25 123 123 123 2;
@@ -797,7 +797,7 @@
 #X obj -156 338 v \$0-selected-track;
 #X msg -156 368 \$1 stop;
 #X obj 203 130 hsl 166 14 0 1 0 0 empty \$0-playhead empty -2 -8 0 10 #3ac668 #eeeeee #111111 0 1;
-#X obj 203 195 hsl 166 17 0 1 0 0 \$0-end-offset \$0-end-offset-set End\ Position 0 25 0 10 #191919 #eeeeee #111111 0 1;
+#X obj 203 195 hsl 166 17 0 1 0 0 \$0-end-offset \$0-end-offset-set END\ POSITION 0 25 0 10 #191919 #eeeeee #111111 0 1;
 #X obj 222 261 knob 38 0 1 0 0 \$0-vel-amp \$0-vel-amp-set #191919 #696969 #EEEEEE 0 0 0 0 0 270 0 0 0 empty 0 6 -15 0 1 0 0 0 0;
 #X obj 229 300 cnv 15 32 8 empty empty AMP. 0 6 0 11 #d0d3cd #111111 0;
 #X obj 476 240 cnv 15 153 44 empty empty empty 6 11 0 13 #4a4a4a #eeeeee 0;
@@ -844,7 +844,8 @@
 #X obj 27 93 cnv 15 128 19 empty empty github.com/glima31/gcd8-pd 3 7 0 9 #4a4a4a #eeeeee 0;
 #X obj 200 24 cnv 15 171 20 empty \$0-filename-display-set empty 10 12 0 11 #191919 #e1e1e1 0;
 #X obj 18 187 cnv 15 73 23 empty \$0-bpm-display 120\ BPM 10 12 0 11 #191919 #e1e1e1 0;
-#X obj 96 187 cnv 15 73 23 empty \$0-clock-id 1004-clk 10 12 0 11 #191919 #e1e1e1 0;
+#X obj 96 187 cnv 15 73 23 empty \$0-clock-id 1470-clk 10 12 0 11 #191919 #e1e1e1 0;
+#X obj -59 643 note 36 14 Inter empty 0 255 255 255 0 25 25 25 0 0 note;
 #X connect 23 0 208 0;
 #X connect 25 0 145 0;
 #X connect 27 0 29 0;
@@ -1354,7 +1355,7 @@
 #C store hits 0;
 #C store shift 0;
 #C store jitter_level 0;
-#C store jitter_ceil 0.1;
+#C store jitter_ceil 1;
 #C store accent_hits 0;
 #C store accent_intensity 1;
 #C store accent_shift 0;
@@ -1365,8 +1366,8 @@
 #C store file none;
 #C store start 0;
 #C store hold 1;
-#C store vel_tone 0.302632;
-#C store vel_start 0.348684;
+#C store vel_tone 0;
+#C store vel_start 0;
 #C store vel_attack 0;
 #C store vel_length 0;
 #C store sequencer 0 32 0.808 0 0 1 0 1 0 0 0;
