@@ -21,12 +21,15 @@ Of course, the main GCD-8's feature is its custom velocity response alongisde th
     - [Using GCD-8 in your own patches](#using-gcd-8-in-your-own-patches)
     - [Using GCD-8 in your DAW](#using-gcd-8-in-your-daw)
 - [Usage Guide](#usage-guide)
-    - [Global Controls](#global-controls)
+    - [Configuring the Master Clock](#configuring-the-master-clock)
+    - [Controlling the Sequencer State](#controlling-the-sequencer-state)
+    - [Adjusting the Main Mix Output Level](#adjusting-the-main-mix-output-level)
     - [Selecting Tracks for Editing](#selecting-tracks-for-editing)
-    - [Loading Samples](#loading-samples)
+    - [Loading and Auditioning Samples](#loading-and-auditioning-samples)
     - [Programming the Base Pattern](#programming-the-base-pattern)
-    - [Dynamics](#dynamics)
-    - [Tuning the Sampler's Velocity Response](#tuning-the-samplers-velocity-response)
+    - [Adding Expressiveness](#adding-expressiveness)
+        - [Jitter and Accents](#jitter-and-accents)
+        - [Tuning the Sampler's Velocity Response](#tuning-the-samplers-velocity-response)
     - [Panning](#panning)
     - [Muting Tracks](#muting-tracks)
     - [Inlets](#inlets)
@@ -158,7 +161,9 @@ The **LEVEL** knob acts as a level trimmer for the selected track. By default, i
 
 Here we say that this section controls the track's main euclidean sequencer. The **LENGTH**, **HITS** and **SHIFT** knobs are the usual euclidean parameters (do we explain ?). The **STEP RATE** radio button selects between 4 step resolutions (resolutions? rates?): 1/16, bl abl a
 
-### Dynamics
+### Adding Expressiveness
+
+#### Jitter and Accents
 ![dynamics section screenshot](images/dynamics.png)
 
 - Brief intro to this section (this is responsible for making our rhythmic pattern more expressive. With the default settings, this is essentially bypassed, so all hits are played with max velocity by defaut. )
@@ -175,7 +180,7 @@ Here we say that this section controls the track's main euclidean sequencer. The
 - We should also note that in order for the accents to (???), we should decrease value of jitter CEILING (research this so you understan dwhat im talking about)
 
 
-### Tuning the Sampler's Velocity Response
+#### Tuning the Sampler's Velocity Response
 ![velocity response section screenshot](images/velocity_response.png)
 
 - The VELCOITY RESPONSE section under the sampler allows for finetuning of how different velocities affect different sonic characteristics of the sample(?). 
