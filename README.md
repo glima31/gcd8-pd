@@ -4,6 +4,66 @@
     <img src="images/gui.png" alt="GCD-8 patch screenshot" width="700">
 </p>
 
+GCD-8 is an 8-track euclidean sample player with dynamics and panning controls, making it possible to generate expressive rhythmic patterns with an interesting stereo image. At the heart of this instrument lies the sampler's velocity response section, which makes it possible to determine how different velocities affect the sound. 
+
+The idea behind this instrument arose out of necessity. As a musician with a major interest in Industrial music aswell as in compositional approaches inspired by Musique Concrète, after collecting and cataloguing a vast amount of percussive samples, i found myself in need of sequencing them while also avoid making it all sound too "machine-like". After some initial experiments in VCV Rack that ended up validating my own "velocity response" implementation, i decided ot encapsulate all of it in PureData. 
+
+Once i was happy with my Pd implementation of my own sampler with velcoity response, the obvious next step was to expand it with some rhytmic pattern generation capabilities. So this is where GCD-8 was born.
+
+Of course, the main GCD-8's feature is its custom velocity response alongisde the dynamics controls of the sequencer. But this doesn't mean that the main goal behind it is to create "expressive" rhythmic patterns. As a matter of fact, GCD-8 is capable of generating really interesting robotic/machine-like rhythms, for those who that aesthetically pleasing. This can be seen in my [808 Electro Madness demo video].  
+
+## Table of Contents
+- [Demos](#demos)
+- [Features](#features)
+- [Getting Started](#getting-started)
+    - [Requirements](#requirements)
+    - [Quick Start](#quick-start)
+    - [Using GCD-8 in your own patches](#using-gcd-8-in-your-own-patches)
+    - [Using GCD-8 in your DAW](#using-gcd-8-in-your-daw)
+- [Usage Guide](#usage-guide)
+    - [Global Controls](#global-controls)
+    - [Selecting Tracks for Editing](#selecting-tracks-for-editing)
+    - [Loading Samples](#loading-samples)
+    - [Programming the Base Pattern](#programming-the-base-pattern)
+    - [Dynamics](#dynamics)
+    - [Tuning the Sampler's Velocity Response](#tuning-the-samplers-velocity-response)
+    - [Panning](#panning)
+    - [Muting Tracks](#muting-tracks)
+    - [Inlets](#inlets)
+    - [Outlets](#outlets)
+- [License](#license)
+
+## Demos
+### Video 1
+Link
+Description
+
+### Video 2
+Link 
+Description
+
+### Video 3
+Link
+Description
+
+## Features
+- Custom **velocity response** implementation with controls to shape how velocity affects **amplitude**, **tone**, **start position**, **attack** and **decay**
+- AHD amplitude envelope with velocity-sensitive attack and decay stages and user-defined HOLD stage length (with the possibility of turning the AHD envelope into AD)
+- **Euclidean rhythm generator** with controls for **step rate**, **length**, **hits** and **shift/rotation**
+- **Random velocity generator** (jitter) with controls for **depth** and **ceiling**
+- **Euclidean accent generator** with controls for accent **quantity**, **intensity** and **shift**
+- **Euclidean panner** with controls for **hits**, **spread** and **side** (L/R)  
+- Start and End position trimmers to crop the loaded samples active regions
+- Invididual track level control
+- `run` and `reset` methods for external transport actions
+- Mute tracks externally with the `mute $TRACK_NR` method
+- Ability to set the clock's BPM externally 
+- Main mix stereo outlets
+- Indvidual outlets for each track stereo output pairs
+- Track #7 and #8 euclidean sequencer direct outlets
+- Full state persistence (arrays, knobs, etc.)
+
+
 ## Getting Started
 
 ### Requirements
@@ -36,28 +96,40 @@ Open `gcd8.daw.pd` in a Plugdata DAW plugin instance. Each track gets its own st
 
 ### Global Controls
 
-![master clock sectionscreenshot](images/master_clock.png)
-
 - Brief intro to this README section?
 
 MASTER CLOCK section:
+<p>
+    <img src="images/master_clock.png" alt="GCD-8 patch screenshot" width="200">
+</p>
+
 - **RATE** knob controls the clock speed in BPM. The value is displayed above it.
 - **INT. / Ext.** radio button sets the clock mode. On external mode, the **RATE** knob is ignored and the rate is set via the second inlet. 
 - Next to the rate BPM display, the ID of the clock is displayed. Our master clock , internally, uses `[else/clock ]` , which can be set to be the slave of another `[else/clock ]` if we know its ID. This means that you can easily sync other clocks to the instrument's master clock by using its id, for example: `[else/clock -s 1003-clk ]` 
 
 TRANSPORT: 
+<p>
+    <img src="images/transport.png" alt="GCD-8 patch screenshot" width="200">
+</p>
+
 - **RUN** button to start advancing the sequencers
 - **RESET** button to reset all track's sequencers back to step 0
+
+MAIN OUTPUT
+<p>
+    <img src="images/main_output.png" alt="GCD-8 patch screenshot" width="200">
+</p>
 
 - The **LEVEL** knob under the **MAIN OUTPUT** section controls the main mix output level.
 
 ### Selecting Tracks for Editing
 ![track strips screenshot](images/track_strips.png)
+
 - here we jsut want to say that in order to edit a specific track, we select it by pressing the track number button at the bottom of the track strip. 
 - the currently selected track is highlighted (background and border change their colors) 
 
 ### Loading Samples
-![sampler section screenshot](images/sampler.png)
+![sampler section screenshot](images/loading_samples.png)
 
 Briefly talk about the buttons:
 - **LOAD** button to open the file explorer and load an audio file
@@ -70,11 +142,12 @@ Briefly say that the **START POSITION** and **END POSITION** sliders are used to
 The **LEVEL** knob acts as a gain(?) trimmer. At max, gain = 1. 
 
 ### Programming the Base Pattern
-![sequencer section screenshot](images/sequencer.png)
+![base pattern section screenshot](images/base_pattern.png)
 
 Here we say that this section controls the track's main euclidean sequencer. The **LENGTH**, **HITS** and **SHIFT** knobs are the usual euclidean parameters (do we explain ?). The **STEP RATE** radio button selects between 4 step resolutions (resolutions? rates?): 1/16, bl abl a
 
-### Adding Dynamics to the Sequence
+### Dynamics
+![dynamics section screenshot](images/dynamics.png)
 
 - Brief intro to this section (this is responsible for making our rhythmic pattern more expressive. With the default settings, this is essentially bypassed, so all hits are played with max velocity by defaut. )
 
@@ -91,6 +164,8 @@ Here we say that this section controls the track's main euclidean sequencer. The
 
 
 ### Tuning the Sampler's Velocity Response
+![velocity response section screenshot](images/velocity_response.png)
+
 - The VELCOITY RESPONSE section under the sampler allows for finetuning of how different velocities affect different sonic characteristics of the sample(?). 
 - All knobs under this section **except the envelope HOLD knob** are "depths". This means that on minimum position, depth = 0, so there is no velocity response for that parameter/characteristic(?). As we increase these knobs, the greater impact is felt in thei respective what(?) for different(?) velocities 
 - The **AMP.** knob determines how velocity affects the amplitude level of the audio playback. If set to maximum -> exponential? Velocity is decreased by V² ? (is this true?)
@@ -105,23 +180,26 @@ A few note sthat we somehow maybe should include:
 - Maybe examples like: for very short and dry samples (e.g., a wooden stick hit?), **AMP.** and maybe a bit of **TONE** is usually enough. For samples with a longer ringing tail (??), the START knob in conjunction with the TONE and DECAY are very useful, particularly if the sample has a very strong transient (on lower velocities, it would sound very weird if we left the transient intact, so we can lverage the **START** knob to skip some parts of.. and maybe apply a bit of **ATTACK** to smoothen out the transient on lower velocities)
 - Maybe we can also note that tweaking the HOLD knob while adjusting the START and END sliders above the VELCOITY RESPONSE section can used isolate a certain part of a longer audio samples (not one shot) and make it percussive
 
-
 ### Panning
-
+![panning section screenshot](images/panning.png)
 - Like the Accents, this is another euclidean sequencer internally that is slaved to the base pattern one (length = base pattern hits, only advances on every hit), but the question is answers is: "From these hits, which ones should be played on my preferred side?" Preferred??
 - The **HITS** knob determines how many hits are from the base pattern are tilted/biased/??? or "should be panned"? to the side selected using the **SIDE** radio button. 
 - The **SPREAD** knob determines the how much (...) If set to min. (default) <-- this yield no effect. As we increase this knob's alue, the "lefter L sounds and righter the R sounds". At full position, a hit is either played full L or full R. <--- also mention equal power panning!!! 
 
 ### Muting Tracks
+<p align="center">
+    <img src="images/muting_tracks.png">
+</p>
+
 - The red buttons on top of each track strip allows us mute tracks. If the track is unmuted, the button is red, otherwis eit is greyed out (and its HIT BANG(??) aswell ). 
 - The first inlet of this instrument accepts the `toggle` method (e.g., `[mute 2 (` to mute track 2), which can be used to, for example, patch a MIDI controller input in order to make it mute/unmute each of the 8 tracks manually (with physicial controllers). This makes the instrument very playable.  
-
 
 ### Inlets
 | Inlet | Description |
 | ----- | ----------- |
-| 0     |             |
-| 1     |             |
+| 0     | float:    |
+|        | asdasd   |
+| 1     | float: clock rate (BPM) |
 
 
 ### Outlets
@@ -129,8 +207,8 @@ A few note sthat we somehow maybe should include:
 | ------ | ----------- |
 | 0-1    | Main mix L/R outputs            |
 | 2-17   | Individual track L/R output pairs            |
-| 18-21  | Track #7 euclidean sequencer direct outputs (18)            |
-| 22-25  | Tracl #8 euclidean sequencer direct outputs (22=...)            |
+| 18-21  | Track #7 sequencer direct outs (hit(bang), velocity(0.0-1.0), accent(bang), rest(bang))            |
+| 22-25  | Track #8 sequencer direct outs (hit(bang), velocity(0.0-1.0), accent(bang), rest(bang))            |
 
 ## License
 
