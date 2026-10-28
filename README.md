@@ -4,13 +4,13 @@
     <img src="images/gui.png" alt="GCD-8 patch screenshot" width="700">
 </p>
 
-GCD-8 is an 8-track euclidean sample player with dynamics and panning controls, making it possible to generate expressive rhythmic patterns with an interesting stereo image. At the heart of this instrument lies the sampler's velocity response section, which makes it possible to determine how different velocities affect the sound. 
+GCD-8 is an 8-track expressive rhythm programmer. Each track pairs a sample player with a euclidean sequencer, while dynamics and panning controls vary each hit's velocity and give the patterns an interesting stereo image. At the heart of the instrument is the sampler's velocity response section, which lets you shape how different velocities affect the sound.
 
-The idea behind this instrument arose out of necessity. As a musician with a major interest in Industrial music aswell as in compositional approaches inspired by Musique Concrète, after collecting and cataloguing a vast amount of percussive samples, i found myself in need of sequencing them while also avoid making it all sound too "machine-like". After some initial experiments in VCV Rack that ended up validating my own "velocity response" implementation, i decided ot encapsulate all of it in PureData. 
+The idea behind this instrument came out of necessity. As a musician with a strong interest in industrial music and in compositional approaches inspired by musique concrète, after spending (too much) time collecting and cataloguing a vast number of percussive samples, i found myself in need of  a way to sequence them without everything sounding too machine-like. Some initial experiments in VCV Rack validated my own velocity response implementation, so I decided to encapsulate it all in Pure Data.
 
-Once i was happy with my Pd implementation of my own sampler with velcoity response, the obvious next step was to expand it with some rhytmic pattern generation capabilities. So this is where GCD-8 was born.
+Once I was happy with my Pd sampler and its velocity response, the obvious next step was to add rhythmic pattern generation. That's how GCD-8 was born.
 
-Of course, the main GCD-8's feature is its custom velocity response alongisde the dynamics controls of the sequencer. But this doesn't mean that the main goal behind it is to create "expressive" rhythmic patterns. As a matter of fact, GCD-8 is capable of generating really interesting robotic/machine-like rhythms, for those who that aesthetically pleasing. This can be seen in my [808 Electro Madness demo video].  
+GCD-8's main features are its custom velocity response and the sequencer's dynamics controls, but that doesn't mean expressive patterns are all it's for. With little to no tweaking on the dynamics controls, It can also generate intricate robotic rhythms for those who enjoy a more "old-school" machine-like aesthetic, as you can hear in my [GCD-8 - Electrowerk 808 demo video]().
 
 ## Table of Contents
 - [Demos](#demos)
