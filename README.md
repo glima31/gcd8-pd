@@ -94,52 +94,64 @@ Open `gcd8.daw.pd` in a Plugdata DAW plugin instance. Each track gets its own st
 
 ## Usage Guide
 
-### Global Controls
+### Configuring the Master Clock
+![master clock section screenshot](images/master_clock.png)
 
-- Brief intro to this README section?
 
-MASTER CLOCK section:
-<p>
-    <img src="images/master_clock.png" alt="GCD-8 patch screenshot" width="200">
-</p>
+The **RATE** knob controls the clock speed in BPM when the clock is set to internal mode (**INT.**).
 
-- **RATE** knob controls the clock speed in BPM. The value is displayed above it.
-- **INT. / Ext.** radio button sets the clock mode. On external mode, the **RATE** knob is ignored and the rate is set via the second inlet. 
-- Next to the rate BPM display, the ID of the clock is displayed. Our master clock , internally, uses `[else/clock ]` , which can be set to be the slave of another `[else/clock ]` if we know its ID. This means that you can easily sync other clocks to the instrument's master clock by using its id, for example: `[else/clock -s 1003-clk ]` 
+If the clock is set to external mode (**EXT.**), the clock rate is set by the second inlet of the abstraction, so the **RATE** knob is effectively ignored.
 
-TRANSPORT: 
-<p>
-    <img src="images/transport.png" alt="GCD-8 patch screenshot" width="200">
-</p>
+>[!TIP]
+>The master clock implementation is based on `[else/clock ]`, which makes it very easy to create slave clocks that are guaranteed to be synced to the master. For this reason, on the right side of the BPM display, the clock ID is shown. This makes it possible to create other clocks in the same patch as gcd-8 that are synced to GCD-8's master clock by instanting them with the `-s` flag followed by the clock ID: 
+>```
+>[else/clock -s 1003-clk]
+>```
 
-- **RUN** button to start advancing the sequencers
-- **RESET** button to reset all track's sequencers back to step 0
 
-MAIN OUTPUT
-<p>
-    <img src="images/main_output.png" alt="GCD-8 patch screenshot" width="200">
-</p>
+### Controlling the Sequencer State
+![transport section screenshot](images/transport.png)
 
-- The **LEVEL** knob under the **MAIN OUTPUT** section controls the main mix output level.
+To start advancing the internal euclidean sequencers, press the **RUN** button. The button background color wlil turn to red while the sequencers are running. 
+
+To stop the sequencers, press the **RUN** button again. 
+
+>[!NOTE]
+>It is also possible to start/stop the sequencer using the first inlet: `1` to start, `0` to stop 
+
+The **RESET** button resets all internal sequencers back to step 0. This is particularly useful for multi-track recording in separate takes inside a DAW while guaranteeing that the new take starts 
+
+>[!NOTE]
+>**The internal sequencers do not automatically reset back to step 0** when the sequencer is started or stopped. The **RESET** button is particularly useful when you want to guarantee that all the sequences start from the beginning (for example, when layering tracks in separate recording takes inside a DAW), 
+
+
+### Adjusting the Main Mix Output Level
+![main output section screenshot](images/main_output.png)
+
+The **LEVEL** knob acts as a level trimmer for the main mix output (coming out of inlets 0 and 1). Thishis doesn't impact the levels coming out of the individual track outlets.
+
 
 ### Selecting Tracks for Editing
 ![track strips screenshot](images/track_strips.png)
 
-- here we jsut want to say that in order to edit a specific track, we select it by pressing the track number button at the bottom of the track strip. 
-- the currently selected track is highlighted (background and border change their colors) 
+By default, the track editor displays the sampler and sequencer controls for track #1. To edit another track, **click on its respective numbered button**. 
 
-### Loading Samples
+The currently selected track's strip has its border and background conveniently highlighted. 
+
+
+### Loading and Auditioning Samples
 ![sampler section screenshot](images/loading_samples.png)
 
-Briefly talk about the buttons:
-- **LOAD** button to open the file explorer and load an audio file
-- **TRIGGER** button to play the sample (this plays at full velocity)
-- **STOP** button to stop playback (useful for longer samples, we would have to wait until they reach the end)
-- **CLEAR** to clear the loaded sample
+On the right side of the sampler's waveform display (the green graph), there are 4 buttons:
+- **LOAD**: load an audio file into the currently selected track's sampler. 
+- **TRIGGER**: play the sample at full velocity
+- **STOP**: stop playback (useful for longer samples)
+- **CLEAR**: clear the loaded sample
 
-Briefly say that the **START POSITION** and **END POSITION** sliders are used to trim the active region of the loaded sample
+The **START POSITION** and **END POSITION** sliders lets you trim the sample's active region. 
 
-The **LEVEL** knob acts as a gain(?) trimmer. At max, gain = 1. 
+The **LEVEL** knob acts as a level trimmer for the selected track. By default, it is set to max. (unity). 
+
 
 ### Programming the Base Pattern
 ![base pattern section screenshot](images/base_pattern.png)
