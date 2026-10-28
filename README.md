@@ -198,27 +198,34 @@ A few note sthat we somehow maybe should include:
 - The **HITS** knob determines how many hits are from the base pattern are tilted/biased/??? or "should be panned"? to the side selected using the **SIDE** radio button. 
 - The **SPREAD** knob determines the how much (...) If set to min. (default) <-- this yield no effect. As we increase this knob's alue, the "lefter L sounds and righter the R sounds". At full position, a hit is either played full L or full R. <--- also mention equal power panning!!! 
 
-### Muting Tracks
-<p align="center">
-    <img src="images/muting_tracks.png">
-</p>
+### Muting/Unmuting Tracks
+![muted tracks screenshot](images/muting_tracks.png)
 
-- The red buttons on top of each track strip allows us mute tracks. If the track is unmuted, the button is red, otherwis eit is greyed out (and its HIT BANG(??) aswell ). 
-- The first inlet of this instrument accepts the `toggle` method (e.g., `[mute 2 (` to mute track 2), which can be used to, for example, patch a MIDI controller input in order to make it mute/unmute each of the 8 tracks manually (with physicial controllers). This makes the instrument very playable.  
+The button on top of each track strip acts as a mute/unmute toggler. When a track is **muted**, the button is grey. Otherwise, it is red.
+
+It is also possible to toggle the mute/unmute status of a specific track with the **1st inlet's** `mute` **method** (e.g., `[mute 2 (` to mute/unmute track 2).
+
+>[!Tip]
+>If you have a hardware MIDI controller/keyboard, you can easily assign certain buttons/keys to mute/unmute specific tracks. This makes GCD-8 very "jammable". 
+
+>[!NOTE]
+>All the signal outlets (main mix + individiual tracks) are **post-mute**.
+
 
 ### Inlets
-| Inlet | Description |
+| Inlet | Accepted Values / Methods |
 | ----- | ----------- |
-| 0     | float:    |
-|        | asdasd   |
-| 1     | float: clock rate (BPM) |
+| 0     | float: `0` to start the sequencer, `1` to stop it   |
+|       | `ext`: set the master clock to external (**EXT.**) mode  |
+|       | `mute <f>`: mute/unmute a specific track (e.g., `[mute 2 (` to mute/unmute track 2) |
+| 1     | float: clock rate (BPM). This is ignored if the clock is set to internal (**INT.**) mode  |
 
 
 ### Outlets
 | Outlet | Description |
 | ------ | ----------- |
-| 0-1    | Main mix L/R outputs            |
-| 2-17   | Individual track L/R output pairs            |
+| 0-1    | Main mix L/R outputs (post-fader, post-mutes)           |
+| 2-17   | Individual track L/R output pairs (post-fader, post-mute)            |
 | 18-21  | Track #7 sequencer direct outs (hit(bang), velocity(0.0-1.0), accent(bang), rest(bang))            |
 | 22-25  | Track #8 sequencer direct outs (hit(bang), velocity(0.0-1.0), accent(bang), rest(bang))            |
 
