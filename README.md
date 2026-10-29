@@ -159,9 +159,17 @@ The **LEVEL** knob acts as a level trimmer for the selected track. By default, i
 ### Programming the Base Pattern
 ![base pattern section screenshot](images/base_pattern.png)
 
-Here we say that this section controls the track's main euclidean sequencer. The **LENGTH**, **HITS** and **SHIFT** knobs are the usual euclidean parameters (do we explain ?). The **STEP RATE** radio button selects between 4 step resolutions (resolutions? rates?): 1/16, bl abl a
+The **BASE PATTERN** section exposes the controls that are typically found on any euclidean pattern generator:
+    - **LENGTH**: the total number of steps in the sequence (from 1 to 32)
+    - **HITS**: how many hits in the sequence. When this knob is set to the maximum position, all the steps are hits. 
+    - **SHIFT**: as this knob is turned clockwise, the whole pattern is shifted by 1 step.
+
+The **STEP RATE** radio button allows you to change the selected track's intenrnal clock speed in relation to the **MASTER CLOCK**. By default, this is set to `1/4` (1 step per quarter note), but you can make it faster up to `1/16` (1 step per sixteenth note) or slow it down to `1/2` (1 step per half note). 
+
 
 ### Adding Expressiveness
+
+By default, every hit is played at full velocity. In order to make our sequence more expressive, we use the **DYNAMICS** section in order to [play the hits at different velocities](#jitter-and-accents) and the **VELOCITY RESPONSE** section to [tune how the sound responds to different velocities](#tuning-the-samplers-velocity-response).
 
 #### Jitter and Accents
 ![dynamics section screenshot](images/dynamics.png)
@@ -199,9 +207,20 @@ A few note sthat we somehow maybe should include:
 
 ### Panning
 ![panning section screenshot](images/panning.png)
-- Like the Accents, this is another euclidean sequencer internally that is slaved to the base pattern one (length = base pattern hits, only advances on every hit), but the question is answers is: "From these hits, which ones should be played on my preferred side?" Preferred??
-- The **HITS** knob determines how many hits are from the base pattern are tilted/biased/??? or "should be panned"? to the side selected using the **SIDE** radio button. 
-- The **SPREAD** knob determines the how much (...) If set to min. (default) <-- this yield no effect. As we increase this knob's alue, the "lefter L sounds and righter the R sounds". At full position, a hit is either played full L or full R. <--- also mention equal power panning!!! 
+
+Just like the **accent generator**, each track has another "slave" euclidean sequencer that only advances when there is a base pattern hit and its length (the total number of steps) is always equal to the number of **HITS** set in the **BASE PATTERN** section. 
+
+The **HITS** knob of the **PANNING** section determines how many hits in the base sequence should be panned to our preferred side. 
+
+The preferred side is set with the **SIDE** radio button. 
+
+The **SPREAD** knob sets the (???) between each sides of the stereo field. By default, it is set to 0 , meaning that the hits will always be centered regardless of hte value of the **HITS** knob. The higher the value of the **SPREAD** knob, the (???) ... mention equal power panning??. With this knob set to ts maximum position, our hits play either fully `L` or fully `R` (depending on the values of the other controls). 
+
+To exemplify, let's say we have a base pattern of `16` steps from which `4` are hits. If we set our **SIDE** to `R`, increase hte **SPREAD** a bit and set the **HITS** to `2`, the panning will alternate on every hit (the first hit will be panned to the right, the second one to the left, the third one to the rigth, etc...).  
+
+>[!NOTE]
+>If the **HITS** knob is set to its maximum position, **all hits in the sequence** will be panned to **SIDE**. 
+
 
 ### Muting/Unmuting Tracks
 ![muted tracks screenshot](images/muting_tracks.png)
