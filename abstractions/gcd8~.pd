@@ -1,6 +1,6 @@
 #N canvas 0 140 695 543 12;
 #X declare -path ../utils;
-#N canvas 0 56 380 192 gui 1;
+#N canvas 0 56 380 192 gui 0;
 #X obj -1 -1 cnv 15 693 541 empty empty empty 20 12 0 14 #d0d3cd #ffffff 0;
 #X obj 8 139 cnv 15 169 160 empty empty MASTER\ CLOCK 6 11 0 13 #191919 #eeeeee 0;
 #X obj 11 160 cnv 15 163 136 empty empty empty 20 12 0 14 #d0d3cd #e1e1e1 0;
@@ -712,7 +712,7 @@
 #X connect 36 2 1 0;
 #X connect 36 3 30 0;
 #X restore 861 53 pd track-select;
-#N canvas 0 50 450 300 track-strips 1;
+#N canvas 0 50 450 300 track-strips 0;
 #X msg 38 397 bgcolor 255 0 0 \, fgcolor 255 0 0;
 #X obj 200 482 s \$0-mute-btn-set;
 #X obj 200 448 list prepend;
@@ -842,7 +842,7 @@
 #X obj 27 93 cnv 15 128 19 empty empty github.com/glima31/gcd8-pd 3 7 0 9 #4a4a4a #eeeeee 0;
 #X obj 200 24 cnv 15 171 20 empty \$0-filename-display-set empty 10 12 0 11 #191919 #e1e1e1 0;
 #X obj 17 170 cnv 15 73 23 empty \$0-bpm-display 120\ BPM 10 12 0 11 #191919 #e1e1e1 0;
-#X obj 95 170 cnv 15 73 23 empty \$0-clock-id 1003-clk 10 12 0 11 #191919 #e1e1e1 0;
+#X obj 95 170 cnv 15 73 23 empty \$0-clock-id 1241-clk 10 12 0 11 #191919 #e1e1e1 0;
 #X obj 8 410 cnv 15 170 119 empty empty MAIN\ OUTPUT 6 11 0 13 #191919 #eeeeee 0;
 #X obj 11 431 cnv 15 164 95 empty empty empty 20 12 0 14 #d0d3cd #e1e1e1 0;
 #X obj 55 434 knob 73 0 1 0 0.5 \$0-main-level \$0-main-level-set #191919 #696969 #eeeeee 0 0 0 0 0 270 0 0 1 empty empty 0 12 6 -15 0 1 0 0;
@@ -1727,9 +1727,9 @@
 #X obj 2011 950 r \$0-trigger-playback;
 #X obj 2056 1029 makefilename \$0-track-%d-strip-bng;
 #X obj 2011 1073 s;
-#X obj 2011 993 t f f;
 #X obj 903 413 s \$0-trigger-playback;
 #X text 770 160 float: 1 to start the sequencers \, 0 to stop \; trigger <f \, f>: trigger the sampler of a specific track. the first float is the track number (1-8) and the second one is the velocity (0.0-1.0) mute <f>: mute/unmute track # \; ext: set the clock to external mode;
+#X obj 2011 993 t a f;
 #X connect 2 0 134 0;
 #X connect 3 0 1 1;
 #X connect 5 0 132 0;
@@ -1944,12 +1944,12 @@
 #X connect 133 0 121 0;
 #X connect 133 0 120 0;
 #X connect 134 0 4 0;
-#X connect 134 1 139 0;
+#X connect 134 1 138 0;
 #X connect 134 2 34 0;
 #X connect 134 3 1 0;
-#X connect 135 0 138 0;
+#X connect 135 0 140 0;
 #X connect 136 0 137 1;
-#X connect 138 0 95 0;
-#X connect 138 0 137 0;
-#X connect 138 1 136 0;
+#X connect 140 0 95 0;
+#X connect 140 0 137 0;
+#X connect 140 1 136 0;
 #X coords 0 0 1 1 695 543 2 1 0;

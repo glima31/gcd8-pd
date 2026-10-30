@@ -1,19 +1,18 @@
-# GCD-8 for PureData
+# GCD-8 for Pure Data
 
 <p align="center">
     <img src="images/gui.png" alt="GCD-8 patch screenshot" width="700">
 </p>
 
-GCD-8 is an 8-track expressive rhythm programmer. Each track pairs a sample player with a euclidean sequencer, while dynamics and panning controls vary each hit's velocity and give the patterns an interesting stereo image. At the heart of the instrument is the sampler's velocity response section, which lets you shape how different velocities affect the sound.
+GCD-8 is an 8-track sample-based expressive rhythm programmer for Pure Data. Each track pairs a sample player with an euclidean sequencer, while dynamics and panning controls vary each hit's velocity and give the patterns an interesting stereo image. At the heart of the instrument is the sampler's velocity response section, which lets you shape how different velocities affect the sound.
 
 The idea behind this instrument came out of necessity. As a musician with a strong interest in industrial music and in compositional approaches inspired by musique concrète, after spending (too much) time collecting and cataloguing a vast number of percussive samples, i found myself in need of  a way to sequence them without everything sounding too machine-like. Some initial experiments in VCV Rack validated my own velocity response implementation, so I decided to encapsulate it all in Pure Data.
 
-Once I was happy with my Pd sampler and its velocity response, the obvious next step was to add rhythmic pattern generation. That's how GCD-8 was born.
+Once I was happy with my Pd sampler abstraction and its velocity response, the obvious next step was to add rhythmic pattern generation. That's how GCD-8 was born.
 
 GCD-8's main features are its custom velocity response and the sequencer's dynamics controls, but that doesn't mean expressive patterns are all it's for. With little to no tweaking on the dynamics controls, It can also generate intricate robotic rhythms for those who enjoy a more "old-school" machine-like aesthetic, as you can hear in my [GCD-8 - Electrowerk 808 demo video]().
 
 ## Table of Contents
-- [Demos](#demos)
 - [Features](#features)
 - [Getting Started](#getting-started)
     - [Requirements](#requirements)
@@ -28,26 +27,16 @@ GCD-8's main features are its custom velocity response and the sequencer's dynam
     - [Loading and Auditioning Samples](#loading-and-auditioning-samples)
     - [Programming the Base Pattern](#programming-the-base-pattern)
     - [Adding Expressiveness](#adding-expressiveness)
-        - [Jitter and Accents](#jitter-and-accents)
+        - [Jitter](#jitter)
+        - [Accents](#accents)
         - [Tuning the Sampler's Velocity Response](#tuning-the-samplers-velocity-response)
     - [Panning](#panning)
     - [Muting Tracks](#muting-tracks)
     - [Inlets](#inlets)
     - [Outlets](#outlets)
+- [Demos](#demos)
 - [License](#license)
 
-## Demos
-### Video 1
-Link
-Description
-
-### Video 2
-Link 
-Description
-
-### Video 3
-Link
-Description
 
 ## Features
 - Custom **velocity response** implementation with controls to shape how velocity affects **amplitude**, **tone**, **start position**, **attack** and **decay**
@@ -59,7 +48,8 @@ Description
 - Start and End position trimmers to crop the loaded samples active regions
 - Invididual track level control
 - `run` and `reset` methods for external transport actions
-- Mute tracks externally with the `mute $TRACK_NR` method
+- Trigger tracks externally with the `trigger` method
+- Mute tracks externally with the `mute` method
 - Ability to set the clock's BPM externally 
 - Main mix stereo outlets
 - Indvidual outlets for each track stereo output pairs
@@ -151,6 +141,9 @@ On the right side of the sampler's waveform display (the green graph), there are
 - **STOP**: stop playback (useful for longer samples)
 - **CLEAR**: clear the loaded sample
 
+>[!NOTE]
+>You can also trigger a specific track's sampler with the first inlet's `trigger` method (e.g., `[trigger 2 0.85 (` to trigger track 2 with a velocity value of 0.85)
+
 The **START POSITION** and **END POSITION** sliders lets you trim the sample's active region. 
 
 The **LEVEL** knob acts as a level trimmer for the selected track. By default, it is set to max. (unity). 
@@ -169,24 +162,28 @@ The **STEP RATE** radio button allows you to change the selected track's intenrn
 
 ### Adding Expressiveness
 
-By default, every hit is played at full velocity. To make a pattern more expressive, use the **DYNAMICS** section to [play hits at different velocities](#jitter-and-accents), and the **VELOCITY RESPONSE** section to [tune how the sample responds to them](#tuning-the-samplers-velocity-response).
+By default, every hit is played at full velocity. To make a pattern more expressive, use the **DYNAMICS** section to generate velocity values per hit, and the **VELOCITY RESPONSE** section to tune how the sample responds to them.
 
-#### Jitter and Accents
+#### Jitter
+The **JITTER** controls allows you to tweak the range of randomized velocities:
+- **DEPTH**: how far below the **CEILING** the random velocities can go. At `0` (default), every hit is played exactly at the **CEILING**. At its maximum position, velocities can be anywhere between `0` and the **CEILING**
+- **CEILING**: the maximum velocity value generated while jittering
+
+#### Accents
 ![dynamics section screenshot](images/dynamics.png)
 
-The **DYNAMICS** section generates a velocity for every hit of the base pattern. It has two parts, **JITTER** and **ACCENTS**. With the default settings, neither has any effect and every hit is played at full velocity.
+Internally, each track has a second euclidean sequencer whose sole purpose is to select which hits from the base pattern are accented. For this reason, instead of advancing on every clock tick, this sequencer only advances whenever there is a base pattern hit. Also, its sequence length is always equal the value set in the **HITS** knob of the **BASE PATTERN** section. In other words, while base pattern generator answers the question "which of these steps are hits?", the **accent generator** answers "which of these hits are accented?".
 
-**JITTER** plays each hit at a random velocity:
-- **CEILING**: the maximum velocity.
-- **DEPTH**: how far below the **CEILING** the random velocities can go. At `0` (default), every hit is played exactly at the **CEILING**. At its maximum position, velocities can be anywhere between `0` and the **CEILING**.
+If the **JITTER** controls are tweaked so that every base pattern hit produces a randomized velocity value, when our **accent generator** fires a hit, this **velocity value is boosted**. 
 
-**ACCENTS** boost the velocity of selected hits. To select them, each track has a second euclidean sequencer that only advances on base pattern hits, and whose length is always equal to the number of base pattern **HITS**. While the base pattern answers the question "which of these steps are hits?", the accent sequencer answers "which of these hits are accented?".
-- **QUANTITY**: how many of the base pattern hits are accented.
-- **INTENSITY**: how much an accented hit's velocity is boosted.
-- **SHIFT**: as this knob is turned clockwise, the accent pattern is shifted by 1 hit.
+The **QUANTITY** knob determines how many base pattern hits are accented. Under the hood, this sets the number of hits in our second euclidean sequencer acting as the **accent generator**. When this knob is set to its maximum position, all hits of the base pattern are accented.
+
+The amount of boost to add to the current velocity value is set by the **INTENSITY** knob. 
 
 >[!NOTE]
->Accents use the headroom above the **CEILING**: an accented hit gets `INTENSITY × (1 - CEILING)` added to its velocity. This means that **with the CEILING at its maximum position (default), accents have no effect**. Lower the **CEILING** to make room for them.
+>Accents use the headroom available above the **CEILING**: an accented hit gets `INTENSITY × (1 - CEILING)` added to its velocity. This means that **with the CEILING at its maximum position (default), accents have no effect**. Lower the **CEILING** to make room for them.
+
+The **SHIFT** knob rotates the pattern of the **accent generator** euclidean sequencer. 
 
 To exemplify, let's say we set the **CEILING** to `0.5`, the **DEPTH** to `0` and the **INTENSITY** to its maximum position. Non-accented hits are played at `0.5` and accented hits at full velocity (`1.0`). Increasing the **DEPTH** then randomizes both, while accented hits always stay above the non-accented ones.
 
@@ -194,23 +191,23 @@ To exemplify, let's say we set the **CEILING** to `0.5`, the **DEPTH** to `0` an
 #### Tuning the Sampler's Velocity Response
 ![velocity response section screenshot](images/velocity_response.png)
 
-The **VELOCITY RESPONSE** section determines how a hit's velocity shapes the sound of the sample.
+GCD-8's **velocity reponse** implementation assumes that the loaded sample in its original form (after optionally applying any start/end/level trimming) corresponds to the sound that should be played at full velocity. Tweaking the controls under this section will determine how **lower velocities** shape the sound. 
 
-All knobs except **HOLD** are depths: at their minimum position (default), velocity has no effect on their parameter. The higher the depth, the more softer hits differ from hits at full velocity, which are never affected by these knobs.
+All knobs except **HOLD** are **depths**: at their minimum position, velocity has no effect on their underlying parameter. **The higher the depth, the more softer hits differ from hits at full velocity**, which are **never affected by these knobs**:
 
 - **AMP.**: lowers the level of softer hits. At its maximum position, the level follows the velocity squared (a hit at velocity `0.5` plays at a quarter of the level).
-- **TONE**: makes softer hits darker, using a low-pass filter. At its maximum position, the cutoff goes from 24 kHz at full velocity down to 600 Hz at velocity `0`.
-- **START**: makes softer hits skip the beginning of the sample. At its maximum position, a hit at velocity `0` starts halfway through the sample's active region.
+- **TONE**: makes softer hits darker using a low-pass filter. At its maximum position, the cutoff frequency goes from 24 kHz at full velocity down to 600 Hz at velocity `0`.
+- **START**: makes softer hits skip the a certain portion of the sample's beginning. If the sample is a one-shot percussive sample, this can be used to **soften** the transient on lower velocities. 
 - **ATTACK**: makes softer hits fade in more slowly, with up to 150 ms of attack at velocity `0`.
 - **DECAY**: makes softer hits shorter. At its maximum position, a hit at velocity `0` lasts 15% of its normal length.
-- **HOLD**: not affected by velocity. It sets the length of the hold stage of the AHD amplitude envelope, from `0` (an AD envelope that decays right after the attack) up to 95% of the envelope (default). The rest is the decay stage.
+
+The **HOLD** is not affected by velocity. It sets the length of the hold stage of the AHD amplitude envelope. By default, this knob is set to its maximum position, which sets the length of the HOLD stage to be 95% of the whole AHD envelope. **Setting the knob to `0`, turns the envelope into an AD envelope**. 
 
 >[!TIP]
->The right settings depend entirely on the sample. For short, dry samples (e.g., a wooden stick hit), **AMP.** and a bit of **TONE** are usually enough. For samples with a strong transient and a longer tail, combine **START** with **TONE** and **DECAY**: on soft hits, an untouched transient sounds unnatural, so use **START** to skip part of it and a bit of **ATTACK** to smooth out what's left.
+>The right settings depend entirely on the sample. For short, dry samples (e.g., a wooden stick hit), **AMP.** and a bit of **TONE** are usually enough. For samples with a strong transient and a longer tail, combining **START** with **TONE** and **DECAY** usually yields good results: on soft hits, an untouched transient sounds unnatural, so use **START** to skip part of it and a bit of **ATTACK** to smooth out what's left.
 
 >[!TIP]
 >Lowering the **HOLD** while adjusting the **START POSITION** and **END POSITION** sliders lets you isolate part of a longer sample (not a one-shot) and turn it into a percussive sound.
-
 
 
 ### Panning
@@ -261,6 +258,21 @@ It is also possible to toggle the mute/unmute status of a specific track with th
 | 2-17   | Individual track L/R output pairs (post-fader, post-mute)            |
 | 18-21  | Track #7 sequencer direct outs (hit(bang), velocity(0.0-1.0), accent(bang), rest(bang))            |
 | 22-25  | Track #8 sequencer direct outs (hit(bang), velocity(0.0-1.0), accent(bang), rest(bang))            |
+
+
+## Demos
+### Video 1
+Link
+Description
+
+### Video 2
+Link 
+Description
+
+### Video 3
+Link
+Description
+
 
 ## License
 
