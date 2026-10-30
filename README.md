@@ -183,11 +183,13 @@ To exemplify, let's say we set the **CEILING** to `0.5`, the **DEPTH** to `0` an
 
 GCD-8's **velocity response** implementation assumes that the loaded sample in its original form (after optionally applying any start/end/level trimming) corresponds to the sound that should be played at full velocity. Tweaking the controls under this section will determine how **lower velocities** shape the sound. 
 
-All knobs except **HOLD** are **depths**: at their minimum position, velocity has no effect on their underlying parameter. **The higher the depth, the more softer hits differ from hits at full velocity**, which are **never affected by these knobs**:
+All knobs except **HOLD** are **depths**: at their minimum position, velocity has no effect on their underlying parameter. **The higher the depth, the more softer hits differ from hits at full velocity**, which are **never affected by these knobs**. 
+
+The **velocity response depth** controls are:
 
 - **AMP.**: lowers the level of softer hits. At its maximum position, the level follows the velocity squared (a hit at velocity `0.5` plays at a quarter of the level).
 - **TONE**: makes softer hits darker using a low-pass filter. At its maximum position, the cutoff frequency goes from 24 kHz at full velocity down to 600 Hz at velocity `0`.
-- **START**: makes softer hits skip part of the sample's beginning. If the sample is a one-shot percussive sample, this can be used to **soften** the transient on lower velocities. 
+- **START**: makes softer hits skip part of the sample's beginning. If the sample is a one-shot percussive sample, this can be used to **soften the transient** on lower velocities. 
 - **ATTACK**: makes softer hits fade in more slowly, with up to 150 ms of attack at velocity `0`.
 - **DECAY**: makes softer hits shorter. At its maximum position, a hit at velocity `0` lasts 15% of its normal length.
 
@@ -199,7 +201,7 @@ The **HOLD** knob is not affected by velocity. It sets the length of the hold st
 >For samples with a strong transient and a longer tail, try to combine **START** with **TONE** and **DECAY**. On soft hits, an untouched transient sounds unnatural, so increasing the **START** depth to skip part of it and a bit of **ATTACK** to smooth out what's left usually yields good results.
 
 >[!TIP]
->Lowering the **HOLD** while adjusting the **START POSITION** and **END POSITION** sliders lets you isolate part of a longer sample (not a one-shot) and turn it into a percussive sound.
+>Lowering the **HOLD** while adjusting the **START POSITION** and **END POSITION** sliders lets you isolate part of a longer sample and turn it into a percussive sound.
 
 
 ### Panning
