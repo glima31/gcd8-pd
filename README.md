@@ -249,6 +249,7 @@ It is also possible to toggle the mute/unmute status of a specific track with th
 | ----- | ----------- |
 | 0     | float: `0` to start the sequencer, `1` to stop it   |
 |       | `ext`: set the master clock to external (**EXT.**) mode  |
+|       | `trigger <f,f>`: trigger a specific track. the first float is the track number (1-8) and the second is the velocity (0.0-1.0) | 
 |       | `mute <f>`: mute/unmute a specific track (e.g., `[mute 2 (` to mute/unmute track 2) |
 | 1     | float: clock rate (BPM). This is ignored if the clock is set to internal (**INT.**) mode  |
 
