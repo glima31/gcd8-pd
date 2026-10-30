@@ -38,22 +38,17 @@ GCD-8's main features are its custom velocity response and the sequencer's dynam
 
 
 ## Features
-- Custom **velocity response** implementation with controls to shape how velocity affects **amplitude**, **tone**, **start position**, **attack** and **decay**
-- AHD amplitude envelope with velocity-sensitive attack and decay stages and user-defined HOLD stage length (with the possibility of turning the AHD envelope into AD)
-- **Euclidean rhythm generator** with controls for **step rate**, **length**, **hits** and **shift/rotation**
-- **Random velocity generator** (jitter) with controls for **depth** and **ceiling**
-- **Euclidean accent generator** with controls for accent **quantity**, **intensity** and **shift**
-- **Euclidean panner** with controls for **hits**, **spread** and **side** (L/R)  
-- Start and End position trimmers to crop the loaded samples active regions
-- Invididual track level control
-- `run` and `reset` methods for external transport actions
-- Trigger tracks externally with the `trigger` method
-- Mute tracks externally with the `mute` method
-- Ability to set the clock's BPM externally 
-- Main mix stereo outlets
-- Indvidual outlets for each track stereo output pairs
-- Track #7 and #8 euclidean sequencer direct outlets
-- Full state persistence (arrays, knobs, etc.)
+- **Velocity response** controls that shape how velocity affects each sample's **amplitude**, **tone**, **start position**, **attack** and **decay**
+- **AHD/AD amplitude envelope** with velocity-sensitive attack and decay, and an adjustable hold stage (set it to `0` for an AD envelope)
+- **Euclidean rhythm generator** with **step rate**, **length**, **hits** and **shift** controls
+- **Velocity jitter** with **depth** and **ceiling** controls
+- **Euclidean accent generator** with **quantity**, **intensity** and **shift** controls
+- **Euclidean panner** with **hits**, **spread** and **side** controls
+- Start and end position sliders to **trim each sample's active region**
+- Stereo **main mix outlets**, plus **individual stereo outlets** for each track
+- **Direct sequencer outlets** for tracks 7 and 8 (hit, velocity, accent and rest)
+- **External control via inlets**: start/stop, track triggering, track muting and clock rate
+- **Full state persistence**: all control values and loaded sample paths are saved with the patch
 
 
 ## Getting Started
