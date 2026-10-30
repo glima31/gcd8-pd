@@ -39,7 +39,7 @@ GCD-8's main features are its custom velocity response and the sequencer's dynam
 
 ## Features
 - **Velocity response** controls that shape how velocity affects each sample's **amplitude**, **tone**, **start position**, **attack** and **decay**
-- **AHD/AD amplitude envelope** with velocity-sensitive attack and decay, and an adjustable hold stage (set it to `0` for an AD envelope)
+- **AHD/AD amplitude envelope** with velocity-sensitive attack and decay, and an adjustable hold stage
 - **Euclidean rhythm generator** with **step rate**, **length**, **hits** and **shift** controls
 - **Velocity jitter** with **depth** and **ceiling** controls
 - **Euclidean accent generator** with **quantity**, **intensity** and **shift** controls
@@ -85,11 +85,12 @@ The **RATE** knob controls the clock speed in BPM when the clock is set to inter
 If the clock is set to external mode (**EXT.**), the clock rate is set by the second inlet of the abstraction, so the **RATE** knob is effectively ignored.
 
 >[!TIP]
->The master clock implementation is based on `[else/clock ]`, which makes it very easy to create slave clocks that are guaranteed to be synced to the master. For this reason, on the right side of the BPM display, the clock ID is shown. This makes it possible to create other clocks in the same patch as gcd-8 that are synced to GCD-8's master clock by instantiating them with the `-s` flag followed by the clock ID: 
+>The master clock is built on `[else/clock ]`, so other ELSE clocks can follow it and stay in sync.
+>
+>To do this, create a new `[else/clock ]` with the `-s` flag followed by the ID shown to the right of the BPM display:
 >```
 >[else/clock -s 1003-clk]
 >```
->Please note that the **ID changes when the patch is reopened**.
 
 
 ### Controlling the Sequencer State
@@ -102,7 +103,7 @@ To stop the sequencers, press the **RUN** button again.
 >[!NOTE]
 >It is also possible to start/stop the sequencer using the first inlet: `1` to start, `0` to stop.
 
-The **RESET** button resets all internal sequencers back to step 0. This is particularly useful for multi-track DAW recording in separate while guaranteeing that the new take starts from the beginning of the sequence.
+The **RESET** button resets all internal sequencers back to step 0. This is particularly useful when recording tracks in separate takes inside a DAW, to make sure each take starts from the beginning of the sequence.
 
 
 ### Adjusting the Main Mix Output Level
@@ -129,7 +130,7 @@ On the right side of the sampler's waveform display (the green graph), there are
 - **CLEAR**: clear the loaded sample
 
 >[!NOTE]
->You can also trigger a specific track's sampler with the first inlet's `trigger` method (e.g., `[trigger 2 0.85 (` to trigger track 2 with a velocity value of 0.85)
+>You can also trigger a specific track's sampler with the first inlet's `trigger` method (e.g., `[trigger 2 0.85 (` to trigger track 2 with a velocity value of 0.85).
 
 The **START POSITION** and **END POSITION** sliders let you trim the sample's active region. 
 
@@ -206,11 +207,11 @@ The **HOLD** knob is not affected by velocity. It sets the length of the hold st
 
 Just like the **accent generator**, each track has another "slave" euclidean sequencer that only advances when there is a base pattern hit and its length (the total number of steps) is always equal to the number of **HITS** set in the **BASE PATTERN** section. 
 
-The **HITS** knob of the **PANNING** section determines how many hits in the base sequence should be panned to the side selected by the **SIDE** radio button. The remaining hits, are panned to the opposite side.
+The **HITS** knob of the **PANNING** section determines how many hits in the base sequence should be panned to the side selected by the **SIDE** radio button. The remaining hits are panned to the opposite side.
 
-The **SPREAD** knob sets how far from the center the hits are panned. By default, it is set to `0`, meaning that all hits are centered regardless of the **HITS** knob value. WIth this knob set to its maximum position, hits play either fully `L` or fully `R`.
+The **SPREAD** knob sets how far from the center the hits are panned. By default, it is set to `0`, meaning that all hits are centered regardless of the **HITS** knob value. With this knob set to its maximum position, hits play either fully `L` or fully `R`.
 
-To exemplify, let's say we have a base pattern of `16` steps from which `4` are hits. If we set our **SIDE** to `R`, increase the **SPREAD** a bit and set the **HITS** to `2`, the panning will alternate on every hit (the first hit will be panned to the right, the second one to the left, the third one to the right, etc...).  
+To exemplify, let's say we have a base pattern of `16` steps from which `4` are hits. If we set our **SIDE** to `R`, increase the **SPREAD** a bit and set the **HITS** to `2`, the panning will alternate on every hit (the first hit will be panned to the right, the second one to the left, the third one to the right, etc.).  
 
 >[!NOTE]
 >If the **HITS** knob is set to its maximum position, **all hits in the sequence** will be panned to **SIDE**. 
@@ -235,7 +236,7 @@ It is also possible to toggle the mute/unmute status of a specific track with th
 | ----- | ----------- |
 | 0     | float: `1` to start the sequencer, `0` to stop it   |
 |       | `ext`: set the master clock to external (**EXT.**) mode  |
-|       | `trigger <f,f>`: trigger a specific track. the first float is the track number (1-8) and the second is the velocity (0.0-1.0) | 
+|       | `trigger <f,f>`: trigger a specific track. The first float is the track number (1-8) and the second is the velocity (0.0-1.0) | 
 |       | `mute <f>`: mute/unmute a specific track (e.g., `[mute 2 (` to mute/unmute track 2) |
 | 1     | float: clock rate (BPM). This is ignored if the clock is set to internal (**INT.**) mode  |
 
