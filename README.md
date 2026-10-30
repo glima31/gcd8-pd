@@ -55,14 +55,9 @@ GCD-8's main features are its custom velocity response and the sequencer's dynam
 
 ### Requirements
 
-GCD-8 depends on the [ELSE](https://github.com/porres/pd-else) and [cyclone](https://github.com/porres/pd-cyclone) libraries.
+The recommended way to run GCD-8 is with [Plugdata](https://plugdata.org), which already includes the [ELSE](https://github.com/porres/pd-else) and [cyclone](https://github.com/porres/pd-cyclone) libraries it depends on. It's also the only way to use GCD-8 inside a DAW (`gcd8.daw.pd`).
 
-**Plugdata users:** nothing to install. Plugdata already includes both.
-
-**Pure Data users:** install **ELSE v1.0-rc13** and **cyclone** via *Help → Find Externals*, then add both folders to *Preferences → Path*.
-
-> [!WARNING]
-> Use ELSE **v1.0-rc13**, not v1.0-rc14. GCD-8 was developed in Plugdata, which ships rc13 at the time of writing. rc14 introduced an undocumented breaking change to the `[button ]` object, which GCD-8 uses extensively. Stick with rc13 until a newer ELSE version is released.
+To use GCD-8 in Pure Data instead, install **ELSE v1.0-rc13** (exactly this version) and **cyclone**, then add both folders to *Preferences → Path*.
 
 ### Quick start
 
@@ -77,7 +72,7 @@ Add the `abstractions/` folder to Pure Data's or Plugdata's search paths. You ca
 Open `gcd8.daw.pd` in a Plugdata DAW plugin instance. Each track gets its own stereo output, and GCD-8 follows the DAW's tempo and transport.
 
 > [!WARNING]
-> Tested in Reaper only. Clock sync works reliably while the Plugdata window is closed or in the background, but interacting with it during playback or recording can make GCD-8 drift out of sync. Avoid interacting with the plugin window mid-take. This will be addressed in a future version.
+> While testing this in Reaper, I noticed that the clock can drift out of sync after a while when interacting with the Plugdata window. Closing the plugin window, or simply clicking away from it so it isn't focused, appears to solve the issue. When recording, avoid interacting with the plugin window mid-take. This will be addressed in a future version.
 
 ## Usage Guide
 
