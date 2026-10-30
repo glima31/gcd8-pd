@@ -169,41 +169,49 @@ The **STEP RATE** radio button allows you to change the selected track's intenrn
 
 ### Adding Expressiveness
 
-By default, every hit is played at full velocity. In order to make our sequence more expressive, we use the **DYNAMICS** section in order to [play the hits at different velocities](#jitter-and-accents) and the **VELOCITY RESPONSE** section to [tune how the sound responds to different velocities](#tuning-the-samplers-velocity-response).
+By default, every hit is played at full velocity. To make a pattern more expressive, use the **DYNAMICS** section to [play hits at different velocities](#jitter-and-accents), and the **VELOCITY RESPONSE** section to [tune how the sample responds to them](#tuning-the-samplers-velocity-response).
 
 #### Jitter and Accents
 ![dynamics section screenshot](images/dynamics.png)
 
-- Brief intro to this section (this is responsible for making our rhythmic pattern more expressive. With the default settings, this is essentially bypassed, so all hits are played with max velocity by defaut. )
+The **DYNAMICS** section generates a velocity for every hit of the base pattern. It has two parts, **JITTER** and **ACCENTS**. With the default settings, neither has any effect and every hit is played at full velocity.
 
-- The jitter controls makes each hit be played at a random velcoity with its maximum value determined by the **CEILING** knob. The greater the **DEPTH** knob, the greater the range of velocity values while jittering. 
+**JITTER** plays each hit at a random velocity:
+- **CEILING**: the maximum velocity.
+- **DEPTH**: how far below the **CEILING** the random velocities can go. At `0` (default), every hit is played exactly at the **CEILING**. At its maximum position, velocities can be anywhere between `0` and the **CEILING**.
 
-- The accent controls determine which hits from the base pattern are accented. Internally, this uses another euclidean sequencer that is slaved(?) to the main one: 
-    - Instead of advancing on every step, it only advances whenever there is a HIT on the base pattern
-    - The length of the euclidean sequence is always the same as the number of base pattern HITS. 
-    - So , while the BASE PATTERN sequencer answers the question "From this sequence of X steps where Y are hits, which ones are hits?", this sequencer answers the question "From these hits, which ones should be accented?"
-- The **QUANTITY** knob determines hor many HITS (from the base pattern) are accented. The **INTENSITY** knob determines how much too boost the velocity when a hit is accented. 
-- The SHIFT knob shifts the accent sequence by 1 step. 
-- Maybe we should say that the JITTER and ACCENTS sub-sections work closely together. For example: with a high INTENSITY and a low jitter CEILING, the accents are very pronounced. If jittering DEPTH is set to 0 (so no jittering), this essentially means that there are no accents aswell (because our accents essentially BOOST the generated velocities while ittering - confim this please)
-- We should also note that in order for the accents to (???), we should decrease value of jitter CEILING (research this so you understan dwhat im talking about)
+**ACCENTS** boost the velocity of selected hits. To select them, each track has a second euclidean sequencer that only advances on base pattern hits, and whose length is always equal to the number of base pattern **HITS**. While the base pattern answers the question "which of these steps are hits?", the accent sequencer answers "which of these hits are accented?".
+- **QUANTITY**: how many of the base pattern hits are accented.
+- **INTENSITY**: how much an accented hit's velocity is boosted.
+- **SHIFT**: as this knob is turned clockwise, the accent pattern is shifted by 1 hit.
+
+>[!NOTE]
+>Accents use the headroom above the **CEILING**: an accented hit gets `INTENSITY × (1 - CEILING)` added to its velocity. This means that **with the CEILING at its maximum position (default), accents have no effect**. Lower the **CEILING** to make room for them.
+
+To exemplify, let's say we set the **CEILING** to `0.5`, the **DEPTH** to `0` and the **INTENSITY** to its maximum position. Non-accented hits are played at `0.5` and accented hits at full velocity (`1.0`). Increasing the **DEPTH** then randomizes both, while accented hits always stay above the non-accented ones.
 
 
 #### Tuning the Sampler's Velocity Response
 ![velocity response section screenshot](images/velocity_response.png)
 
-- The VELCOITY RESPONSE section under the sampler allows for finetuning of how different velocities affect different sonic characteristics of the sample(?). 
-- All knobs under this section **except the envelope HOLD knob** are "depths". This means that on minimum position, depth = 0, so there is no velocity response for that parameter/characteristic(?). As we increase these knobs, the greater impact is felt in thei respective what(?) for different(?) velocities 
-- The **AMP.** knob determines how velocity affects the amplitude level of the audio playback. If set to maximum -> exponential? Velocity is decreased by V² ? (is this true?)
-- The **TONE** determines the minimum low-pass filter cutoff frequency. The greater this value, the duller lower velocities sound in relation tohigher velocities. 
-- The **START** knob determines how much to skip bl abl a
-- The **ATTACK** knob...
-- The **DECAY** knob..
-- The **HOLD** knob : this is a special case . It is not directly affected by velocity. It determines the length of the HOLD section of the AHD amplitude envelope. At minimum position: AD envelope. Maximum position: AHD envelope where the HOLD stage can take up to x%?? (confirm this) 
+The **VELOCITY RESPONSE** section determines how a hit's velocity shapes the sound of the sample.
 
-A few note sthat we somehow maybe should include: 
-- The way we finetune the vleocity repsonse depends entirely on the loaded sample's characteristics. Some samples benefit from certain controls , while others bl abla. 
-- Maybe examples like: for very short and dry samples (e.g., a wooden stick hit?), **AMP.** and maybe a bit of **TONE** is usually enough. For samples with a longer ringing tail (??), the START knob in conjunction with the TONE and DECAY are very useful, particularly if the sample has a very strong transient (on lower velocities, it would sound very weird if we left the transient intact, so we can lverage the **START** knob to skip some parts of.. and maybe apply a bit of **ATTACK** to smoothen out the transient on lower velocities)
-- Maybe we can also note that tweaking the HOLD knob while adjusting the START and END sliders above the VELCOITY RESPONSE section can used isolate a certain part of a longer audio samples (not one shot) and make it percussive
+All knobs except **HOLD** are depths: at their minimum position (default), velocity has no effect on their parameter. The higher the depth, the more softer hits differ from hits at full velocity, which are never affected by these knobs.
+
+- **AMP.**: lowers the level of softer hits. At its maximum position, the level follows the velocity squared (a hit at velocity `0.5` plays at a quarter of the level).
+- **TONE**: makes softer hits darker, using a low-pass filter. At its maximum position, the cutoff goes from 24 kHz at full velocity down to 600 Hz at velocity `0`.
+- **START**: makes softer hits skip the beginning of the sample. At its maximum position, a hit at velocity `0` starts halfway through the sample's active region.
+- **ATTACK**: makes softer hits fade in more slowly, with up to 150 ms of attack at velocity `0`.
+- **DECAY**: makes softer hits shorter. At its maximum position, a hit at velocity `0` lasts 15% of its normal length.
+- **HOLD**: not affected by velocity. It sets the length of the hold stage of the AHD amplitude envelope, from `0` (an AD envelope that decays right after the attack) up to 95% of the envelope (default). The rest is the decay stage.
+
+>[!TIP]
+>The right settings depend entirely on the sample. For short, dry samples (e.g., a wooden stick hit), **AMP.** and a bit of **TONE** are usually enough. For samples with a strong transient and a longer tail, combine **START** with **TONE** and **DECAY**: on soft hits, an untouched transient sounds unnatural, so use **START** to skip part of it and a bit of **ATTACK** to smooth out what's left.
+
+>[!TIP]
+>Lowering the **HOLD** while adjusting the **START POSITION** and **END POSITION** sliders lets you isolate part of a longer sample (not a one-shot) and turn it into a percussive sound.
+
+
 
 ### Panning
 ![panning section screenshot](images/panning.png)
