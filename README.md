@@ -165,12 +165,14 @@ The **STEP RATE** radio button allows you to change the selected track's intenrn
 By default, every hit is played at full velocity. To make a pattern more expressive, use the **DYNAMICS** section to generate velocity values per hit, and the **VELOCITY RESPONSE** section to tune how the sample responds to them.
 
 #### Jitter
+![jitter screenshot](images/jitter.png)
+
 The **JITTER** controls allows you to tweak the range of randomized velocities:
 - **DEPTH**: how far below the **CEILING** the random velocities can go. At `0` (default), every hit is played exactly at the **CEILING**. At its maximum position, velocities can be anywhere between `0` and the **CEILING**
 - **CEILING**: the maximum velocity value generated while jittering
 
 #### Accents
-![dynamics section screenshot](images/dynamics.png)
+![accents screenshot](images/accents.png)
 
 Internally, each track has a second euclidean sequencer whose sole purpose is to select which hits from the base pattern are accented. For this reason, instead of advancing on every clock tick, this sequencer only advances whenever there is a base pattern hit. Also, its sequence length is always equal the value set in the **HITS** knob of the **BASE PATTERN** section. In other words, while base pattern generator answers the question "which of these steps are hits?", the **accent generator** answers "which of these hits are accented?".
 
@@ -204,7 +206,9 @@ All knobs except **HOLD** are **depths**: at their minimum position, velocity ha
 The **HOLD** is not affected by velocity. It sets the length of the hold stage of the AHD amplitude envelope. By default, this knob is set to its maximum position, which sets the length of the HOLD stage to be 95% of the whole AHD envelope. **Setting the knob to `0`, turns the envelope into an AD envelope**. 
 
 >[!TIP]
->The right settings depend entirely on the sample. For short, dry samples (e.g., a wooden stick hit), **AMP.** and a bit of **TONE** are usually enough. For samples with a strong transient and a longer tail, combining **START** with **TONE** and **DECAY** usually yields good results: on soft hits, an untouched transient sounds unnatural, so use **START** to skip part of it and a bit of **ATTACK** to smooth out what's left.
+>The right settings depend entirely on the sample. For short, dry samples (e.g., a wooden stick hit), **AMP.** and a bit of **TONE** are usually enough. 
+>
+>For samples with a strong transient and a longer tail, try to combine **START** with **TONE** and **DECAY**. On soft hits, an untouched transient sounds unnatural, so increasing the **START** depth to skip part of it and a bit of **ATTACK** to smooth out what's left usually yields good results.
 
 >[!TIP]
 >Lowering the **HOLD** while adjusting the **START POSITION** and **END POSITION** sliders lets you isolate part of a longer sample (not a one-shot) and turn it into a percussive sound.
