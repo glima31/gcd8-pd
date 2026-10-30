@@ -18,7 +18,7 @@
 #A saved 1 pan_side 0;
 #A saved 1 length 1;
 #A saved 1 jitter_ceiling 1;
-#A saved 1 file /home/user/Desktop/Audio\ Samples/One-Shot/Springs/metal_spring_1.wav;
+#A saved 1 file none;
 #A saved 1 start 0;
 #A saved 1 hold 1;
 #A saved 1 vel_tone 0;
@@ -176,7 +176,7 @@
 #A saved 7 hits 0;
 #A saved 7 shift 0;
 #A saved 7 jitter_level 0;
-#A saved 7 jitter_ceil 0.1;
+#A saved 7 jitter_ceil 1;
 #A saved 7 accent_hits 0;
 #A saved 7 accent_intensity 1;
 #A saved 7 accent_shift 0;
@@ -187,8 +187,8 @@
 #A saved 7 file none;
 #A saved 7 start 0;
 #A saved 7 hold 1;
-#A saved 7 vel_tone 0.302632;
-#A saved 7 vel_start 0.348684;
+#A saved 7 vel_tone 0;
+#A saved 7 vel_start 0;
 #A saved 7 vel_attack 0;
 #A saved 7 vel_length 0;
 #A saved 7 sequencer 0 32 0.808 0 0 1 0 1 0 0 0;
@@ -236,7 +236,6 @@
 #X text 109 616 ----------------- Individual L and R outputs for each track ------------;
 #X text 532 672 Track #7 euclidean sequencer direct outs. In order: \; - Bang on HIT \; - Current hit velocity (0.0 - 1.0) \; - Bang on ACCENT \; - Bang on REST \; \; NOTE: The 4 remaining outlets correspond to the sequencer direct outs of track #8;
 #X text 749 576 <--- Track selectors;
-#X text 749 67 QUICK START: \; 1 Load a short percussive sampler by pressing the LOAD button \; 2 Press the RUN button to start the internal sequencers (NOTE: this will be silent while the HITS value under BASE PATTERN is 0) \; 3 Play around with the main sequence settings under the BASE PATTERN section \; 4 Do the same in other tracks...;
 #X connect 1 0 2 0;
 #X connect 1 1 2 1;
 #X connect 1 18 4 0;
