@@ -1,16 +1,17 @@
 # GCD-8 for Pure Data
 
-<p align="center">
-    <img src="images/gui.png" alt="GCD-8 patch screenshot" width="700">
-</p>
-
 GCD-8 is an 8-track sample-based expressive rhythm programmer for Pure Data. Each track pairs a sample player with a euclidean sequencer, while dynamics and panning controls vary each hit's velocity and give the patterns an interesting stereo image. At the heart of the instrument is the sampler's velocity response section, which lets you shape how different velocities affect the sound.
+
+<div align="center">
+    <video src="https://github.com/user-attachments/assets/119cd9df-544f-42ea-8f55-70aee81eb466" controls></video>
+</div>
 
 The idea behind this instrument came out of necessity. As a musician with a strong interest in industrial music and in compositional approaches inspired by musique concrète, after spending (too much) time collecting and cataloguing a vast number of percussive samples, I found myself in need of a way to sequence them without everything sounding too machine-like. Some initial experiments in VCV Rack validated my own velocity response implementation, so I decided to encapsulate it all in Pure Data.
 
 Once I was happy with my Pd sampler abstraction and its velocity response, the obvious next step was to add rhythmic pattern generation. That's how GCD-8 was born.
 
 GCD-8's main features are its custom velocity response and the sequencer's dynamics controls, but that doesn't mean expressive patterns are all it's for. With little to no tweaking of the dynamics controls, it can also generate intricate robotic rhythms for those who enjoy a more "old-school" machine-like aesthetic.
+
 
 ## Table of Contents
 - [Features](#features)
