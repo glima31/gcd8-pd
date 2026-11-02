@@ -1,4 +1,6 @@
 # GCD-8 for Pure Data
+![GitHub Release](https://img.shields.io/github/v/release/glima31/gcd8-pd)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 GCD-8 is an 8-track sample-based expressive rhythm programmer for Pure Data. Each track is built around a **sampler with a custom velocity response**, which shapes the sound according to how hard each hit is played. Rather than just turning softer hits down, it can also make them darker, shorter and less punchy, the way real percussion sounds when struck more gently. 
 
