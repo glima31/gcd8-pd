@@ -64,6 +64,13 @@ The recommended way to run GCD-8 is with [Plugdata](https://plugdata.org), which
 
 To use GCD-8 in **vanilla Pd** instead, install [ELSE v1.0-rc13](#https://github.com/porres/pd-else/releases#release-v.1.0-rc13) and [cyclone](https://github.com/porres/pd-cyclone), then add both folders to *Preferences → Path*.
 
+### Installation
+
+Download the latest release archive from the [Releases page](https://github.com/glima31/gcd8-pd/releases) and extract it.
+
+> [!IMPORTANT]
+> You can put the extracted folder anywhere, but **don't move or rename anything inside it**. GCD-8's patches find each other through relative paths, so moving a single file can leave Pd unable to create its objects.
+
 ### Quick start
 
 Open `gcd8.quickstart.pd`. It has `[gcd8~]` already wired to the audio output, with comments explaining each outlet.
