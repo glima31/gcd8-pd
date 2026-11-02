@@ -21,6 +21,7 @@ Sounding machine-like isn’t always a bad thing, though. With little to no twea
 - [Features](#features)
 - [Getting Started](#getting-started)
     - [Requirements](#requirements)
+    - [Installation](#installation)
     - [Quick Start](#quick-start)
     - [Using GCD-8 in your own patches](#using-gcd-8-in-your-own-patches)
     - [Using GCD-8 in your DAW](#using-gcd-8-in-your-daw)
