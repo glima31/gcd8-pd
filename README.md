@@ -1,6 +1,10 @@
 # GCD-8 for Pure Data
 
-GCD-8 is an 8-track sample-based expressive rhythm programmer for Pure Data. Each track pairs a sample player with a euclidean sequencer, while dynamics and panning controls vary each hit's velocity and give the patterns an interesting stereo image. At the heart of the instrument is the sampler's velocity response section, which lets you shape how different velocities affect the sound.
+GCD-8 is an 8-track sample-based expressive rhythm programmer for Pure Data. Each track is built around a **sampler with a custom velocity response**, which shapes the sound according to how hard each hit is played. Rather than just turning softer hits down, it can also make them darker, shorter and less punchy, the way real percussion sounds when struck more gently. 
+
+The sampler is driven by three nested euclidean sequencers: the **base pattern generator** sets the rhythm, while the other two, the **accent generator** and the **euclidean panner**, decide which hits are accented and where each one lands in the stereo field. These two advance on hits instead of clock ticks, so accents never fall on silent steps, and both patterns loop in lockstep with the base pattern, whatever its length or density.
+
+Here’s a short demo using metallic hit samples, with the velocity response already tuned:
 
 <div align="center">
     <video src="https://github.com/user-attachments/assets/119cd9df-544f-42ea-8f55-70aee81eb466" controls></video>
@@ -10,7 +14,7 @@ The idea behind this instrument came out of necessity. As a musician with a stro
 
 Once I was happy with my Pd sampler abstraction and its velocity response, the obvious next step was to add rhythmic pattern generation. That's how GCD-8 was born.
 
-GCD-8's main features are its custom velocity response and the sequencer's dynamics controls, but that doesn't mean expressive patterns are all it's for. With little to no tweaking of the dynamics controls, it can also generate intricate robotic rhythms for those who enjoy a more "old-school" machine-like aesthetic.
+Sounding machine-like isn’t always a bad thing, though. With little to no tweaking of the dynamics controls, GCD-8 can also generate intricate robotic rhythms, if a more old-school drum machine sound suits your aesthetic preferences.
 
 
 ## Table of Contents
@@ -56,9 +60,9 @@ GCD-8's main features are its custom velocity response and the sequencer's dynam
 
 ### Requirements
 
-The recommended way to run GCD-8 is with [Plugdata](https://plugdata.org), which already includes the [ELSE](https://github.com/porres/pd-else) and [cyclone](https://github.com/porres/pd-cyclone) libraries it depends on. It's also the only way to use GCD-8 inside a DAW (`gcd8.daw.pd`).
+The recommended way to run GCD-8 is with [Plugdata](https://plugdata.org), which already includes the [ELSE](https://github.com/porres/pd-else) and [cyclone](https://github.com/porres/pd-cyclone) libraries it depends on. It's also the only way to [use GCD-8 inside a DAW](#using-gcd-8-in-your-daw).
 
-To use GCD-8 in Pure Data instead, install **ELSE v1.0-rc13** (exactly this version) and **cyclone**, then add both folders to *Preferences → Path*.
+To use GCD-8 in **vanilla Pd** instead, install [ELSE v1.0-rc13](#https://github.com/porres/pd-else/releases#release-v.1.0-rc13) and [cyclone](https://github.com/porres/pd-cyclone), then add both folders to *Preferences → Path*.
 
 ### Quick start
 
@@ -72,8 +76,6 @@ Add the `abstractions/` folder to Pure Data's or Plugdata's search paths. You ca
 
 Open `gcd8.daw.pd` in a Plugdata DAW plugin instance. Each track gets its own stereo output, and GCD-8 follows the DAW's tempo and transport.
 
-> [!WARNING]
-> While testing this in Reaper, I noticed that the clock can drift out of sync after a while when interacting with the Plugdata window. Closing the plugin window, or simply clicking away from it so it isn't focused, appears to solve the issue. When recording, avoid interacting with the plugin window mid-take. This will be addressed in a future version.
 
 ## Usage Guide
 
