@@ -65,7 +65,7 @@ Sounding machine-like isn’t always a bad thing, though. With little to no twea
 
 The recommended way to run GCD-8 is with [Plugdata](https://plugdata.org), which already includes the [ELSE](https://github.com/porres/pd-else) and [cyclone](https://github.com/porres/pd-cyclone) libraries it depends on. It's also the only way to [use GCD-8 inside a DAW](#using-gcd-8-in-your-daw).
 
-To use GCD-8 in **vanilla Pd** instead, install [ELSE v1.0-rc13](#https://github.com/porres/pd-else/releases#release-v.1.0-rc13) and [cyclone](https://github.com/porres/pd-cyclone), then add both folders to *Preferences → Path*.
+To use GCD-8 in **vanilla Pd** instead, install [ELSE v1.0-rc13](https://github.com/porres/pd-else/releases#release-v.1.0-rc13) and [cyclone](https://github.com/porres/pd-cyclone), then add both folders to *Preferences → Path*.
 
 ### Installation
 
