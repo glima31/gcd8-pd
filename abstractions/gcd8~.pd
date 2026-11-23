@@ -1,6 +1,6 @@
 #N canvas 0 140 695 543 12;
 #X declare -path ../utils;
-#N canvas 0 56 380 192 gui 0;
+#N canvas 0 56 380 192 gui 1;
 #X obj -1 -1 cnv 15 693 541 empty empty empty 20 12 0 14 #d0d3cd #ffffff 0;
 #X obj 8 139 cnv 15 169 160 empty empty MASTER\ CLOCK 6 11 0 13 #191919 #eeeeee 0;
 #X obj 11 160 cnv 15 163 136 empty empty empty 20 12 0 14 #d0d3cd #e1e1e1 0;
@@ -177,7 +177,7 @@
 #X array \$0-track-8-waveform 1 float 2;
 #X coords 0 1 1 -1 172 85 1;
 #X restore 200 45 graph;
-#N canvas 0 50 450 300 track-editor 0;
+#N canvas 0 50 450 300 track-editor 1;
 #N canvas 0 50 450 300 controls 0;
 #X obj 206 1007 r \$0-base-hits;
 #X obj 206 1062 list prepend hits;
@@ -486,7 +486,7 @@
 #X connect 5 4 7 0;
 #X connect 5 5 8 0;
 #X restore 60 190 pd seq-values-display;
-#N canvas 0 50 450 300 sample 0;
+#N canvas 0 50 450 300 sample 1;
 #X obj 171 124 r \$0-track-file-loaded;
 #X obj 171 206 t f f;
 #X obj 186 551 array size;
@@ -547,6 +547,8 @@
 #X obj 180 1145 list split 21;
 #X obj 180 1188 list append 46 46 46;
 #X obj 351 1232 list tosymbol;
+#X msg -95 848 1;
+#X obj -149 916 s \$0-end-offset-set;
 #X connect 0 0 1 0;
 #X connect 1 0 5 0;
 #X connect 1 1 4 0;
@@ -580,6 +582,7 @@
 #X connect 25 0 26 0;
 #X connect 26 0 27 0;
 #X connect 27 0 28 0;
+#X connect 27 0 60 0;
 #X connect 27 1 33 0;
 #X connect 27 1 30 0;
 #X connect 28 0 29 0;
@@ -609,6 +612,7 @@
 #X connect 57 0 58 0;
 #X connect 58 0 59 0;
 #X connect 59 0 54 0;
+#X connect 60 0 61 0;
 #X restore 60 67 pd sample;
 #X restore 861 21 pd track-editor;
 #N canvas 0 50 450 300 run-btn 0;
@@ -627,7 +631,7 @@
 #X restore 988 53 pd run-btn;
 #X obj 144 991 s \$0-selected-track-set;
 #X obj 798 991 s \$0-mute-btn-toggle;
-#N canvas 735 365 1047 637 track-select 0;
+#N canvas 735 365 1047 637 track-select 1;
 #X msg 201 297 label TRACK\\\ EDITOR\\\ (Track\\\ \$1);
 #X obj 669 297 v \$0-selected-track;
 #X obj 477 328 t b b f;
@@ -842,7 +846,7 @@
 #X obj 27 93 cnv 15 128 19 empty empty github.com/glima31/gcd8-pd 3 7 0 9 #4a4a4a #eeeeee 0;
 #X obj 200 24 cnv 15 171 20 empty \$0-filename-display-set empty 10 12 0 11 #191919 #e1e1e1 0;
 #X obj 17 170 cnv 15 73 23 empty \$0-bpm-display 120\ BPM 10 12 0 11 #191919 #e1e1e1 0;
-#X obj 95 170 cnv 15 73 23 empty \$0-clock-id 1241-clk 10 12 0 11 #191919 #e1e1e1 0;
+#X obj 95 170 cnv 15 73 23 empty \$0-clock-id 1003-clk 10 12 0 11 #191919 #e1e1e1 0;
 #X obj 8 410 cnv 15 170 119 empty empty MAIN\ OUTPUT 6 11 0 13 #191919 #eeeeee 0;
 #X obj 11 431 cnv 15 164 95 empty empty empty 20 12 0 14 #d0d3cd #e1e1e1 0;
 #X obj 55 434 knob 73 0 1 0 0.5 \$0-main-level \$0-main-level-set #191919 #696969 #eeeeee 0 0 0 0 0 270 0 0 1 empty empty 0 12 6 -15 0 1 0 0;
