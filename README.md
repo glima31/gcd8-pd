@@ -86,6 +86,18 @@ Add the `abstractions/` folder to Pure Data's or Plugdata's search paths. You ca
 
 Open `gcd8.daw.pd` in a Plugdata DAW plugin instance. Each track gets its own stereo output, and GCD-8 follows the DAW's tempo and transport.
 
+With this patch, you can also use an external MIDI keyboard to trigger individual tracks (with velocity) and to mute/unmute them:
+
+| Notes | Description |
+| ----- | ----------- |
+| C3-B3 | Manual triggers |
+| C4-B4 | Mute/unmute |
+
+Within each octave, the keys map to tracks as follows:
+
+| Key | C | D | E | F | G | A | A# | B |
+| --- | - | - | - | - | - | - | -- | - |
+| Track | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 
 ## Usage Guide
 
