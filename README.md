@@ -158,12 +158,13 @@ The **BASE PATTERN** section exposes the controls that are typically found on an
 - **HITS**: how many steps are hits.
 - **SHIFT**: as this knob is turned clockwise, the whole pattern is shifted by 1 step.
 
-The **STEP RATE** radio button allows you to change the selected track's internal clock speed in relation to the **MASTER CLOCK**. By default, this is set to `1/4` (1 step per quarter note), but you can make it faster up to `1/16` (1 step per sixteenth note) or slow it down to `1/2` (1 step per half note). 
+The **STEP RATE** radio button allows you to change the selected track's internal clock speed in relation to the **MASTER CLOCK**. By default, this is set to `1/4` (1 step per quarter note), but you can make it faster up to `1/16` (1 step per sixteenth note) or slow it down to `1/1` (1 step per full note). 
 
 
 ### Adding Expressiveness
 
 By default, every hit is played at full velocity. To make a pattern more expressive, use the **DYNAMICS** section to generate velocity values per hit, and the **VELOCITY RESPONSE** section to tune how the sample responds to them.
+
 
 #### Jitter
 ![jitter screenshot](images/jitter.png)
@@ -171,6 +172,7 @@ By default, every hit is played at full velocity. To make a pattern more express
 The **JITTER** controls allow you to tweak the range of randomized velocities:
 - **DEPTH**: how far below the **CEILING** the random velocities can go. At `0` (default), every hit is played exactly at the **CEILING**. At its maximum position, velocities can be anywhere between `0` and the **CEILING**
 - **CEILING**: the maximum velocity value generated while jittering
+
 
 #### Accents
 ![accents screenshot](images/accents.png)
